@@ -1,38 +1,27 @@
-.App {
-  text-align: center;
+.page {
+  /*устанавливаем шрифты для страницы по умолчанию*/
+  font-family: 'Inter', Arial, sans-serif;
+  /*устанавливаем цвет бекграунда страницы*/
+  background-color:  #202020;
+  /*устанавливаем цвет текста страницы*/
+  color: #ffffff;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  /*Задаем позиционирование для работы попапа*/
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.page__container {
+  /*установили ограничение по максимальной ширине */
+  max-width: 1280px;
+  min-width: 320px;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  /*для экранов больше 1280px отцентрировали весь контент */
+  margin: 0 auto;
+  /*overflow: hidden;*/
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
