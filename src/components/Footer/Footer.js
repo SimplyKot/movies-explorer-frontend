@@ -6,7 +6,6 @@ function Footer() {
       <h1 className="footer_title">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </h1>
-      {/* TODO Add upperborder */}
       <div className="footer_bar">
         <p className="copyright">&copy;2020</p>
         <nav>

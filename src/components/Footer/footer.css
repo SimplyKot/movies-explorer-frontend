@@ -1,6 +1,6 @@
-.footer * {
+/* .footer * {
   outline: 1px solid red;
-}
+} */
 
 .footer {
   height: 172px;
@@ -16,15 +16,19 @@
   line-height: 16px;
   text-align: center;
   color: #8b8b8b;
+
+
 }
 
 .footer_bar {
   display: flex;
   justify-content: space-between;
+  padding-top:20px;
 
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
+  border-top: 1px solid #424242;
 }
 
 .copyright {
