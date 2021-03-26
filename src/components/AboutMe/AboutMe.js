@@ -1,5 +1,6 @@
 import "./aboutMe.css";
 import photo from "../../images/photo.png";
+import Portfolio from "../Portfolio/Portfolio";
 
 function AboutMe() {
   return (
@@ -9,7 +10,7 @@ function AboutMe() {
         <img className="about-me__photo" src={photo} alt="Фото автора" />
         <div className="about-me__text">
           <h2 className="about-me__name">Виталий</h2>
-          <h3 className="about_me__info">Фронтенд-разработчик, 30 лет</h3>
+          <h3 className="about-me__info">Фронтенд-разработчик, 30 лет</h3>
           <p className="about-me__story">
             Я родился и живу в Саратове, закончил факультет экономики СГУ. У
             меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
@@ -25,6 +26,7 @@ function AboutMe() {
           </nav>
         </div>
       </div>
+      <Portfolio />
     </section>
   );
 }

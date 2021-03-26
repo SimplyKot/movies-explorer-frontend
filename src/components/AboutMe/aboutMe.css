@@ -13,7 +13,7 @@
 
 .about-me__container {
   margin: 23px 0 0 0;
-  padding: 66px 0 0 0;
+  padding: 66px 0 95px 0;
   border-top: 1px solid #dadada;
 
   display: flex;
@@ -25,7 +25,7 @@
 
 .about-me__text {
   margin: 0;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   max-width: 600px;
 }
 
@@ -43,7 +43,7 @@
   letter-spacing: -0.04em;
 }
 
-.about_me__info {
+.about-me__info {
   margin: 18px 0 0 0;
 
   font-size: 18px;
