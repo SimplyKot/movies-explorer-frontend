@@ -1,3 +1,26 @@
 .movies {
   padding: 0 70px;
 }
+
+.movies__button-container {
+  margin: 50px 0 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.movies__button {
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+
+  width: 28%;
+  height: 36px;
+
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  background-color: #2f2f2f;
+  border-radius: 6px;
+}

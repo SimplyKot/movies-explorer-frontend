@@ -24,7 +24,7 @@ function SearchForm() {
       </div>
       <div className="search-string__selector">
         <label className="checkbox__label">Короткометражки</label>
-        <input type="checkbox" name="checkboxName" class="checkbox" />
+        <input type="checkbox" name="checkboxName" className="checkbox" />
         <div className={ioSwitch} onClick={toggleSwitch}></div>
       </div>
     </section>
