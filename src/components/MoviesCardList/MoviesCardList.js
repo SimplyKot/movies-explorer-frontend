@@ -3,11 +3,13 @@ import MovieCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
   return (
-    <section className="cardlist">
+    <ul className="cardlist">
       {props.movies.map((item) => (
-        <MovieCard component={"saved-movies"} movie={item} />
+        <li key={item.movieId}>
+          <MovieCard movie={item} component={props.component} />
+        </li>
       ))}
-    </section>
+    </ul>
   );
 }
 
