@@ -4,7 +4,7 @@ import searchIcon from "../../images/search-icon.svg";
 import React from "react";
 
 function SearchForm() {
-  const [ioSwitch, setIoSwitch] = useState("switch");
+  const [ioSwitch, setIoSwitch] = useState("switch switchOn");
 
   function toggleSwitch() {
     if (ioSwitch === "switch") {
