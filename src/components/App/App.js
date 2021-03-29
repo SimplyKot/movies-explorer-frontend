@@ -1,3 +1,5 @@
+import { Route, Switch, useHistory } from "react-router-dom";
+
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -10,9 +12,17 @@ function App() {
     <div className="page">
       <div className="page__container">
         <Header />
-        {/* <Main /> */}
-        {/* <Movies /> */}
-        <SavedMovies />
+        <Switch>
+          <Route path="/movies">
+            <Movies />
+          </Route>
+          <Route path="/saved-movies">
+            <SavedMovies />
+          </Route>
+          <Route path="/">
+            <Main />
+          </Route>
+        </Switch>
         <Footer />
       </div>
     </div>
