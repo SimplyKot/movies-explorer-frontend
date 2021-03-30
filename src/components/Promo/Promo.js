@@ -14,7 +14,12 @@ function Promo() {
             Листайте ниже, чтобы узнать больше про этот проект и его создателя.
           </p>
           <div className="promo__link-container">
-            <a className="promo__link" href="#">
+            <a
+              className="promo__link"
+              href="https://praktikum.yandex.ru/web/"
+              target={"_blank"}
+              rel="noreferrer"
+            >
               Узнать больше
             </a>
           </div>

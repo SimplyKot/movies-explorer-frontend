@@ -59,24 +59,35 @@
   line-height: 22px;
 }
 
-.about-me_link-container {
+.about-me__link-container {
   margin: 99px 0 0 0;
 }
 
-.about-me_links {
+.about-me__links {
   list-style: none;
   padding: 0;
   display: flex;
 }
 
-.about-me_links :last-child {
+.about-me__links :last-child {
   margin: 0;
 }
 
-.about-me_link {
+.about-me__link-item {
   margin: 0 20px 0 0;
 
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
+}
+
+.about-me__link {
+  color: #fff;
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.about-me__link:hover {
+  opacity: 0.7;
 }

@@ -16,14 +16,12 @@
   line-height: 16px;
   text-align: center;
   color: #8b8b8b;
-
-
 }
 
 .footer_bar {
   display: flex;
   justify-content: space-between;
-  padding-top:20px;
+  padding-top: 20px;
 
   font-weight: normal;
   font-size: 13px;
@@ -46,6 +44,19 @@
   margin-left: 0;
 }
 
-.footer__link {
+.footer__link_item {
   margin-left: 20px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer__link:hover {
+  opacity: 0.7;
 }

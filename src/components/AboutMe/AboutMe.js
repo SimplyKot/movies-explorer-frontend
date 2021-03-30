@@ -18,10 +18,28 @@ function AboutMe() {
             Контур». После того, как прошёл курс по веб-разработке, начал
             заниматься фриланс-заказами и ушёл с постоянной работы.
           </p>
-          <nav className="about-me_link-container">
-            <ul className="about-me_links">
-              <li className="about-me_link">Facebook</li>
-              <li className="about-me_link">Github</li>
+          <nav className="about-me__link-container">
+            <ul className="about-me__links">
+              <li className="about-me__link-item">
+                <a
+                  className="about-me__link"
+                  href="https://www.facebook.com/"
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
+                  Facebook
+                </a>
+              </li>
+              <li className="about-me__link-item">
+                <a
+                  className="about-me__link"
+                  href="https://github.com/"
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
+                  Github
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
