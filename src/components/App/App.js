@@ -7,6 +7,7 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import Profile from "../Profile/Profile";
 import NotFoundError from "../NotFoundError/NotFoundError";
 import Footer from "../Footer/Footer";
 
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/saved-movies">
             <SavedMovies />
+          </Route>
+          <Route path="/profile">
+            <Profile />
           </Route>
           <Route path="/404">
             <NotFoundError />

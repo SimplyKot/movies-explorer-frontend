@@ -3,7 +3,12 @@ import "./footer.css";
 
 function Footer(props) {
   const path = props.location.pathname;
-  if (path === "/login" || path === "/register" || path === "/404") {
+  if (
+    path === "/login" ||
+    path === "/register" ||
+    path === "/404" ||
+    path === "/profile"
+  ) {
     return null;
   }
   return (
