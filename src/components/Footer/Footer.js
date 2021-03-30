@@ -1,6 +1,9 @@
 import "./footer.css";
 
-function Footer() {
+function Footer(props) {
+  if (props.isInvisible) {
+    return null;
+  }
   return (
     <section className="footer">
       <h1 className="footer_title">

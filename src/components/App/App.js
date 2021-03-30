@@ -5,14 +5,19 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
+import Login from "../Login/Login";
 import Footer from "../Footer/Footer";
 
 function App() {
   return (
     <div className="page">
       <div className="page__container">
-        <Header />
+        <Header isInvisible={true} />
         <Switch>
+          <Route path="/">
+            <Login />
+          </Route>
+
           <Route path="/movies">
             <Movies />
           </Route>
@@ -23,7 +28,7 @@ function App() {
             <Main />
           </Route>
         </Switch>
-        <Footer />
+        <Footer isInvisible={true} />
       </div>
     </div>
   );

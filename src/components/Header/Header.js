@@ -2,7 +2,10 @@ import "./header.css";
 import logo from "../../images/logo.svg";
 import profile_icon from "../../images/profile.svg";
 
-function Header() {
+function Header(props) {
+  if (props.isInvisible) {
+    return null;
+  }
   return (
     <header className="header">
       {/* eslint-disable-next-line */}

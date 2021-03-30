@@ -1,0 +1,32 @@
+.login {
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login__top-container {
+  max-width: 396px;
+  width: 100%;
+}
+
+.login__logo {
+  max-width: 38px;
+
+  margin: 70px 0 0 0;
+}
+
+.login__bottom-container {
+  margin: 16px 0 0 0;
+
+  color: #888888;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+}
+.bottom__link {
+  text-decoration: none;
+  margin: 0 0 0 6px;
+  color: #4285f4;
+}
