@@ -4,6 +4,7 @@ import profile_icon from "../../images/profile.svg";
 
 function Navigation(props) {
   const history = useHistory();
+
   return (
     <div className="header_activity-container">
       <nav>
