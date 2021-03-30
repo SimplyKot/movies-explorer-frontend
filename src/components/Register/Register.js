@@ -1,9 +1,9 @@
-import "./login.css";
+import "./register.css";
 import logo from "../../images/logo.svg";
 import React from "react";
 import Form from "../Form/Form";
 
-function Login(props) {
+function Register(props) {
   const [data, setData] = React.useState({ email: "", password: "" });
 
   function handleSubmit(e) {
@@ -16,15 +16,30 @@ function Login(props) {
   }
 
   return (
-    <div className="login">
-      <div className="login__top-container">
+    <div className="register">
+      <div className="register__top-container">
         <img
-          className="login__logo"
+          className="register__logo"
           src={logo}
           alt="Зеленый логотип с улыбкой"
         />
       </div>
-      <Form name="login" title="Рады видеть!" onSubmit={handleSubmit}>
+      <Form name="register" title="Добро пожаловать!" onSubmit={handleSubmit}>
+        <label className="form__label" htmlFor="email">
+          Имя
+        </label>
+        <input
+          type="text"
+          name="name"
+          id="name-input"
+          placeholder="Имя"
+          className="form__field"
+          required
+          value={data.name || ""}
+          onChange={handleChange}
+        />
+        <span className="form__field-error" id="email-input-error"></span>
+
         <label className="form__label" htmlFor="email">
           E-mail
         </label>
@@ -48,24 +63,26 @@ function Login(props) {
           name="password"
           id="password-input"
           placeholder="Пароль"
-          className="form__field"
+          className="form__field form__field_type_error"
           required
           value={data.password || ""}
           onChange={handleChange}
         />
-        <span className="form__field-error" id="password-input-error"></span>
+        <span className="form__field-error" id="password-input-error">
+          Что-то пошло не так...
+        </span>
 
         <button type="submit" className="form__button">
-          Войти
+          Зарегистрироваться
         </button>
       </Form>
-      <div className="login__bottom-container">
-        Ещё не зарегистрированы?
-        <a className="bottom__link" href="/register">
-          Регистрация
+      <div className="register__bottom-container">
+        Уже зарегистрированы?
+        <a className="bottom__link" href="/login">
+          Войти
         </a>
       </div>
     </div>
   );
 }
-export default Login;
+export default Register;

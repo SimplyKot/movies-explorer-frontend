@@ -46,7 +46,8 @@
 }
 
 .form__field_type_error {
-  border-bottom: 1px solid #f00;
+  color: #ee3465;
+  /* border-bottom: 1px solid #f00; */
 }
 
 .form__button {
@@ -61,4 +62,12 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
+}
+
+.form__field-error {
+  font-style: normal;
+  font-size: 10px;
+  line-height: 12px;
+
+  color: #ee3465;
 }

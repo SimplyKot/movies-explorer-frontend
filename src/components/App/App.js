@@ -6,6 +6,7 @@ import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Login from "../Login/Login";
+import Register from "../Register/Register";
 import Footer from "../Footer/Footer";
 
 function App() {
@@ -14,7 +15,10 @@ function App() {
       <div className="page__container">
         <Header isInvisible={true} />
         <Switch>
-          <Route path="/">
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
             <Login />
           </Route>
 
