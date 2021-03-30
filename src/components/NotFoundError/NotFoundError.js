@@ -1,5 +1,8 @@
+import { useHistory } from "react-router";
 import "./notfounderror.css";
+
 function NotFoundError() {
+  const history = useHistory();
   return (
     <div className="not-found">
       <div className="not-found__container" />
@@ -8,9 +11,9 @@ function NotFoundError() {
         <p className="not-found__message">Страница не найдена</p>
       </div>
       <div className="not-found__container not-found__link-container">
-        <a className="not-found__link" href="#">
+        <nav className="not-found__link" onClick={history.goBack}>
           Назад
-        </a>
+        </nav>
       </div>
     </div>
   );

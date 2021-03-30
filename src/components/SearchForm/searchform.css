@@ -20,7 +20,7 @@
 }
 
 .search-string__input {
-  /* width: 100%; */
+  width: 100%;
   margin: 15px 0 15px 22px;
   background-color: #202020;
   color: #8b8b8b;
@@ -28,12 +28,16 @@
   font-weight: 400;
   line-height: 18px;
 
-  border: 0;
+  border: none;
+}
+
+.search-string__input:focus {
+  outline: none;
 }
 
 .serach-form__button {
   margin: 7px;
-  width: 80px;
+  min-width: 80px;
 
   background-color: #4285f4;
   border-radius: 48px;
