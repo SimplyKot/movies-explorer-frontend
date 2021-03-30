@@ -7,6 +7,7 @@ function Navigation(props) {
 
   return (
     <div className="header_activity-container">
+      {/* TODO: Переделать на NavLink (активный - font-weight: 500)  */}
       <nav>
         <ul className="navigation">
           <li
