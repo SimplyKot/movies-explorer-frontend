@@ -8,7 +8,7 @@
   width: 100%;
 }
 .form__title {
-  margin: 40px 0 16px 0;
+  margin: 40px 0 24px 0;
   font-size: 24px;
   font-weight: 500;
   line-height: 29px;
@@ -19,7 +19,7 @@
 }
 
 .form__label {
-  margin: 24px 0 0 0;
+  margin: 16px 0 0 0;
 
   color: #888888;
 
@@ -29,7 +29,7 @@
 }
 
 .form__field {
-  margin: 5px 0 0 0;
+  margin: 5px 0 6px 0;
   padding: 0 0 10px 0;
 
   width: 100%;
@@ -45,12 +45,19 @@
   line-height: 17px;
 }
 
+.form__field:focus {
+  outline: none;
+  border-bottom: 1px solid #4285f4;
+}
+
 .form__field_type_error {
   color: #ee3465;
   /* border-bottom: 1px solid #f00; */
 }
 
 .form__button {
+  transition: 0.2s;
+
   margin: 179px 0 0 0;
   height: 45px;
 
@@ -62,6 +69,16 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
+
+  cursor: pointer;
+}
+.form__button:focus {
+  outline: none;
+}
+
+.form__button:hover {
+  transition: 0.2s;
+  opacity: 0.8;
 }
 
 .form__field-error {

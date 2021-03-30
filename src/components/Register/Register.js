@@ -4,7 +4,11 @@ import React from "react";
 import Form from "../Form/Form";
 
 function Register(props) {
-  const [data, setData] = React.useState({ email: "", password: "" });
+  const [data, setData] = React.useState({
+    name: "Виталий",
+    email: "pochta@yandex.ru",
+    password: "qwertyuioplkjh",
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
