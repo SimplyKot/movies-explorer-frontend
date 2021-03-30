@@ -45,6 +45,14 @@
   font: inherit;
   color: inherit;
   cursor: pointer;
+  transition: 0.2s;
+}
+.serach-form__button:focus {
+  outline: none;
+}
+
+.serach-form__button:hover {
+  opacity: 0.8;
 }
 
 .search-string__icon {
@@ -80,6 +88,7 @@
   cursor: pointer;
   position: relative;
   border-radius: 16px;
+  transition: 0.2s;
 }
 
 .switch:before {
@@ -117,4 +126,8 @@
 
 .switchOn:after {
   left: 21px !important;
+}
+
+.switch:hover {
+  opacity: 0.8;
 }
