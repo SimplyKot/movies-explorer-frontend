@@ -1,7 +1,11 @@
+import { withRouter } from "react-router";
 import "./footer.css";
 
 function Footer(props) {
-  if (props.isInvisible) {
+  if (
+    props.location.pathname === "/login" ||
+    props.location.pathname === "/register"
+  ) {
     return null;
   }
   return (
@@ -23,4 +27,4 @@ function Footer(props) {
   );
 }
 
-export default Footer;
+export default withRouter(Footer);
