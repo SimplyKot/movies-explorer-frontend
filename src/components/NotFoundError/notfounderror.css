@@ -1,0 +1,57 @@
+.not-found {
+  /* outline: 1px solid red; */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.not-found__container {
+  /* border: 1px dotted yellowgreen; */
+
+  height: 33vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found__text-container {
+  justify-content: center;
+}
+
+.not-found__link-container {
+  justify-content: flex-end;
+}
+
+.not-found__title {
+  margin: 0;
+  font-size: 140px;
+  font-weight: 400;
+  line-height: 169px;
+}
+
+.not-found__message {
+  margin: 5px 0 0 0;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+
+  text-align: center;
+}
+
+.not-found__link {
+  margin: 0 0 60px 0;
+
+  color: #4285f4;
+  transition: 0.2s;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+
+  text-decoration: none;
+}
+
+.not-found__link:hover {
+  transition: 0.2s;
+  opacity: 0.7;
+}
