@@ -4,18 +4,14 @@ import logo from "../../images/logo.svg";
 import profile_icon from "../../images/profile.svg";
 
 function Header(props) {
-  if (
-    props.location.pathname === "/login" ||
-    props.location.pathname === "/register"
-  ) {
+  const path = props.location.pathname;
+  if (path === "/login" || path === "/register" || path === "/404") {
     return null;
   }
 
   return (
     <header
-      className={`header${
-        props.location.pathname === "/" ? " header_background_promo" : ""
-      }`}
+      className={`header${path === "/" ? " header_background_promo" : ""}`}
     >
       {/* eslint-disable-next-line */}
       <a href="#" className="header_logo">

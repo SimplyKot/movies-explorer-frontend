@@ -1,4 +1,4 @@
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import "./App.css";
 import Header from "../Header/Header";
@@ -16,25 +16,25 @@ function App() {
       <div className="page__container">
         <Header isInvisible={false} />
         <Switch>
+          <Route exact path="/">
+            <Main />
+          </Route>
           <Route path="/register">
             <Register />
           </Route>
           <Route path="/login">
             <Login />
           </Route>
-
           <Route path="/movies">
             <Movies />
           </Route>
           <Route path="/saved-movies">
             <SavedMovies />
           </Route>
-          <Route exact path="/">
-            <Main />
-          </Route>
-          <Route path="*">
+          <Route path="/404">
             <NotFoundError />
           </Route>
+          <Redirect from="*" to="/404" />
         </Switch>
         <Footer isInvisible={true} />
       </div>

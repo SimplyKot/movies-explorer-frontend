@@ -2,10 +2,8 @@ import { withRouter } from "react-router";
 import "./footer.css";
 
 function Footer(props) {
-  if (
-    props.location.pathname === "/login" ||
-    props.location.pathname === "/register"
-  ) {
+  const path = props.location.pathname;
+  if (path === "/login" || path === "/register" || path === "/404") {
     return null;
   }
   return (
