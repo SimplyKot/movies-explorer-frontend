@@ -1,13 +1,22 @@
+import { withRouter } from "react-router";
 import "./header.css";
 import logo from "../../images/logo.svg";
 import profile_icon from "../../images/profile.svg";
 
 function Header(props) {
-  if (props.isInvisible) {
+  if (
+    props.location.pathname === "/login" ||
+    props.location.pathname === "/register"
+  ) {
     return null;
   }
+
   return (
-    <header className="header">
+    <header
+      className={`header${
+        props.location.pathname === "/" ? " header_background_promo" : ""
+      }`}
+    >
       {/* eslint-disable-next-line */}
       <a href="#" className="header_logo">
         <img
@@ -32,4 +41,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default withRouter(Header);

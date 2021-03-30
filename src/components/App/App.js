@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="page">
       <div className="page__container">
-        <Header isInvisible={true} />
+        <Header isInvisible={false} />
         <Switch>
           <Route path="/register">
             <Register />
