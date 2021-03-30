@@ -7,6 +7,7 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import NotFoundError from "../NotFoundError/NotFoundError";
 import Footer from "../Footer/Footer";
 
 function App() {
@@ -28,8 +29,11 @@ function App() {
           <Route path="/saved-movies">
             <SavedMovies />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Main />
+          </Route>
+          <Route path="*">
+            <NotFoundError />
           </Route>
         </Switch>
         <Footer isInvisible={true} />
