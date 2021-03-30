@@ -17,6 +17,14 @@
   /* border: 1px solid orange; */
   list-style: none;
   margin-left: 20px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.navigation_link:hover {
+  opacity: 0.7;
 }
 
 .profile {
@@ -27,6 +35,13 @@
 
   font-size: 13px;
   line-height: 12px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+.profile:hover {
+  opacity: 0.7;
 }
 
 .profile_name {

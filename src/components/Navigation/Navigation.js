@@ -22,7 +22,7 @@ function Navigation(props) {
           </li>
         </ul>
       </nav>
-      <div className="profile">
+      <div className="profile" onClick={() => history.push("/profile")}>
         <p className="profile_name">Аккаунт</p>
         <img className="profile_logo" src={profile_icon} alt="Профиль" />
       </div>
