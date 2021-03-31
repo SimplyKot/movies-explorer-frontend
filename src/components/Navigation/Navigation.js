@@ -1,34 +1,39 @@
 import "./navigation.css";
-import { useHistory, withRouter } from "react-router";
+import { useHistory, withRouter, NavLink } from "react-router-dom";
 import profile_icon from "../../images/profile.svg";
 
 function Navigation(props) {
-  const history = useHistory();
-
   return (
-    <div className="header_activity-container">
-      {/* TODO: Переделать на NavLink (активный - font-weight: 500)  */}
-      <nav>
-        <ul className="navigation">
-          <li
-            className="navigation_link"
-            onClick={() => history.push("/movies")}
-          >
-            Фильмы
-          </li>
-          <li
-            className="navigation_link"
-            onClick={() => history.push("/saved-movies")}
-          >
-            Сохранённые фильмы
-          </li>
-        </ul>
-      </nav>
-      <div className="profile" onClick={() => history.push("/profile")}>
-        <p className="profile_name">Аккаунт</p>
-        <img className="profile_logo" src={profile_icon} alt="Профиль" />
-      </div>
-    </div>
+    <ul className="navigation">
+      <li className="navigation_link__item">
+        <NavLink
+          className="navigation_link"
+          activeClassName="navigation_link_active"
+          to="/movies"
+        >
+          Фильмы
+        </NavLink>
+      </li>
+      <li className="navigation_link__item">
+        <NavLink
+          className="navigation_link"
+          activeClassName="navigation_link_active"
+          to="/saved-movies"
+        >
+          Сохранённые фильмы
+        </NavLink>
+      </li>
+      <li className="navigation_link__item">
+        <NavLink
+          className="navigation_link"
+          activeClassName="navigation_link_active"
+          to="/profile"
+        >
+          <p className="profile__name">Аккаунт</p>
+          <img className="profile__logo" src={profile_icon} alt="Профиль" />
+        </NavLink>
+      </li>
+    </ul>
   );
 }
-export default withRouter(Navigation);
+export default Navigation;
