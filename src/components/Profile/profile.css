@@ -1,4 +1,15 @@
-.profile {
+.profile__form-container {
+  display: flex;
+  justify-content: center;
   outline: 1ps dotted royalblue;
   margin: 0 auto;
+}
+
+.form__label_view_profile {
+  color: green
+}
+
+.form__field_view_profile {
+  background-color: grey;
+  color: #fff;
 }

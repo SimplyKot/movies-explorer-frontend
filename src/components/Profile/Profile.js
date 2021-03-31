@@ -1,3 +1,4 @@
+import "./profile.css";
 import { useState } from "react";
 import Form from "../Form/Form";
 
@@ -17,13 +18,13 @@ function Profile(props) {
   }
   // TODO: Подогнать форму под измененный шаблон
   return (
-    <section className="profile">
+    <section className="profile__form-container">
       <Form
         name="register"
         title={`Привет, ${data.name}`}
         onSubmit={handleSubmit}
       >
-        <label className="form__label" htmlFor="email">
+        <label className="form__label form__label_view_profile" htmlFor="email">
           Имя
         </label>
         <input
@@ -31,14 +32,14 @@ function Profile(props) {
           name="name"
           id="name-input"
           placeholder="Имя"
-          className="form__field"
+          className="form__field form__field_view_profile"
           required
           value={data.name || ""}
           onChange={handleChange}
         />
         <span className="form__field-error" id="email-input-error"></span>
 
-        <label className="form__label" htmlFor="email">
+        <label className="form__label form__label_view_profile" htmlFor="email">
           E-mail
         </label>
         <input
@@ -46,14 +47,17 @@ function Profile(props) {
           name="email"
           id="email-input"
           placeholder="Email"
-          className="form__field"
+          className="form__field form__field_view_profile"
           required
           value={data.email || ""}
           onChange={handleChange}
         />
         <span className="form__field-error" id="email-input-error"></span>
 
-        <button type="submit" className="form__button">
+        <button
+          type="submit"
+          className="form__button form__button_view_profile"
+        >
           Зарегистрироваться
         </button>
       </Form>
