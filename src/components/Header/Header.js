@@ -21,7 +21,7 @@ function Header(props) {
           alt="Зеленый логотип с улыбкой"
         />
       </nav>
-      <Navigation isBurger={true} />
+      <Navigation isBurger={false} />
     </header>
   );
 }
