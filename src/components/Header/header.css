@@ -28,3 +28,9 @@
   align-items: center;
   justify-content: space-between;
 }
+@media (min-width: 768px) and (max-width: 1280px) {
+  .header {
+    background-color: #073042;
+    padding: 0 calc(50px + 0.039 * (100vw - 768px));
+  }
+}
