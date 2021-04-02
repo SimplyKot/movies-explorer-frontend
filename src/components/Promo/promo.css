@@ -1,6 +1,6 @@
 .promo {
   background-color: #073042;
-  padding: 75px calc(50px + 0.039 * (100vw - 768px)) 85px;
+  padding: 75px 70px 85px;
 }
 
 .promo__container {
@@ -58,7 +58,14 @@
   opacity: 0.8;
 }
 
-@media (max-width: 1090px) {
+@media (min-width: 768px) and (max-width: 1280px) {
+  .promo {
+    background-color: #073042;
+    padding: 75px calc(50px + 0.039 * (100vw - 768px)) 85px;
+  }
+}
+
+@media (max-width: 1073px) {
   .promo__container {
     padding-top: 65px;
     flex-direction: row;
@@ -67,7 +74,6 @@
   .promo__text {
     text-align: center;
   }
-
   .promo__title {
     margin-top: 48px;
   }
