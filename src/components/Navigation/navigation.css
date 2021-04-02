@@ -49,10 +49,9 @@
   font-weight: 500;
 }
 
-.navigation-link__profile {
+/* .navigation-link__profile {
   border: 1px solid green;
-  margin-left: 50px;
-}
+} */
 
 .profile {
   display: flex;
@@ -76,6 +75,9 @@
 
 .profile__name {
   margin: 0 7px 0 50px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 12px;
 }
 
 .profile__logo {
