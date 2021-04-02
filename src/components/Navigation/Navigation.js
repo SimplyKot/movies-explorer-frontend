@@ -13,89 +13,114 @@ const menuItems = [
 const menuProfile = { name: "Аккаунт", link: "/profile" };
 
 function Navigation(props) {
-  const [isBurgerOpen, setIsBurgerOpen] = useState(true);
+  const { isBurger, isLogged } = props;
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   function toggleBurger(e) {
     setIsBurgerOpen(!isBurgerOpen);
   }
 
-  if (props.isBurger) {
-    return (
-      <>
-        <img src={BurgerOpenIcon} alt="Отрыть меню" onClick={toggleBurger} />
-        <div
-          className={
-            isBurgerOpen ? "burger-menu" : "burger-menu burger-menu_hidden"
-          }
-        >
-          <img
-            className="burger-menu__close-button"
-            src={BurgerCloseIcon}
-            onClick={toggleBurger}
-            alt="Закрыть"
-          />
-          <div className="burger-menu__container">
-            {/* TODO: Сверстать бургер */}
-            {menuItems.map((item) => {
-              return (
-                <NavLink
-                  className="burger-menu__item"
-                  activeClassName="burger-menu__item_active"
-                  to={item.link}
-                  exact
-                  onClick={toggleBurger}
-                >
-                  {item.name}
-                </NavLink>
-              );
-            })}
-            <NavLink
-              className="burger-menu__item burger-menu__item_type_profile"
-              activeClassName="burger-menu__item_active"
-              to={menuProfile.link}
-              exact
+  if (isLogged) {
+    if (isBurger) {
+      return (
+        <>
+          <img src={BurgerOpenIcon} alt="Отрыть меню" onClick={toggleBurger} />
+          <div
+            className={
+              isBurgerOpen ? "burger-menu" : "burger-menu burger-menu_hidden"
+            }
+          >
+            <img
+              className="burger-menu__close-button"
+              src={BurgerCloseIcon}
               onClick={toggleBurger}
+              alt="Закрыть"
+            />
+            <div className="burger-menu__container">
+              {menuItems.map((item) => {
+                return (
+                  <NavLink
+                    className="burger-menu__item"
+                    activeClassName="burger-menu__item_active"
+                    to={item.link}
+                    exact
+                    onClick={toggleBurger}
+                  >
+                    {item.name}
+                  </NavLink>
+                );
+              })}
+              <NavLink
+                className="burger-menu__item burger-menu__item_type_profile"
+                activeClassName="burger-menu__item_active"
+                to={menuProfile.link}
+                exact
+                onClick={toggleBurger}
+              >
+                {menuProfile.name}
+                <img
+                  className="profile__logo"
+                  src={profile_icon}
+                  alt="Профиль"
+                />
+              </NavLink>
+            </div>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <ul className="navigation">
+          <li className="navigation-link__item">
+            <NavLink
+              className="navigation-link"
+              activeClassName="navigation-link_active"
+              to="/movies"
             >
-              {menuProfile.name}
+              Фильмы
+            </NavLink>
+          </li>
+          <li className="navigation-link__item">
+            <NavLink
+              className="navigation-link"
+              activeClassName="navigation-link_active"
+              to="/saved-movies"
+            >
+              Сохранённые фильмы
+            </NavLink>
+          </li>
+          <li className="navigation-link__item">
+            <NavLink
+              className="navigation-link"
+              activeClassName="navigation-link_active"
+              to="/profile"
+            >
+              <p className="profile__name">Аккаунт</p>
               <img className="profile__logo" src={profile_icon} alt="Профиль" />
             </NavLink>
-          </div>
-        </div>
-      </>
-    );
+          </li>
+        </ul>
+      );
+    }
   } else {
     return (
-      <ul className="navigation">
-        <li className="navigation-link__item">
-          <NavLink
-            className="navigation-link"
-            activeClassName="navigation-link_active"
-            to="/movies"
-          >
-            Фильмы
-          </NavLink>
+      <ul className="not-logon">
+        <li>
+          <a className="not-logon__link" href="register">
+            Регистрация
+          </a>
         </li>
-        <li className="navigation-link__item">
-          <NavLink
-            className="navigation-link"
-            activeClassName="navigation-link_active"
-            to="/saved-movies"
+        <li>
+          <a
+            className="not-logon__link not-logon__link_type_button"
+            href="/login"
           >
-            Сохранённые фильмы
-          </NavLink>
-        </li>
-        <li className="navigation-link__item">
-          <NavLink
-            className="navigation-link"
-            activeClassName="navigation-link_active"
-            to="/profile"
-          >
-            <p className="profile__name">Аккаунт</p>
-            <img className="profile__logo" src={profile_icon} alt="Профиль" />
-          </NavLink>
+            Войти
+          </a>
         </li>
       </ul>
     );
   }
 }
+
 export default Navigation;

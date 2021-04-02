@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="page">
       <div className="page__container">
-        <Header />
+        <Header isLogged={true} isBurger={false} />
         <Switch>
           <Route exact path="/">
             <Main />
