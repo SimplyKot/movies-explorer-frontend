@@ -91,11 +91,6 @@
   line-height: 16px;
 }
 
-.not-logon__link_item {
-  /* color: #fff;
-  text-decoration: none; */
-}
-
 .not-logon__link {
   margin: 0;
   color: #fff;
@@ -186,4 +181,16 @@
 
 .burger-menu__item:hover {
   opacity: 0.8;
+}
+
+@media (min-width: 769px) {
+  .burger {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    display: none;
+  }
 }

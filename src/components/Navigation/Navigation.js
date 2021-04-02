@@ -13,7 +13,7 @@ const menuItems = [
 const menuProfile = { name: "Аккаунт", link: "/profile" };
 
 function Navigation(props) {
-  const { isBurger, isLogged } = props;
+  const { isLogged } = props;
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   function toggleBurger(e) {
@@ -21,9 +21,39 @@ function Navigation(props) {
   }
 
   if (isLogged) {
-    if (isBurger) {
-      return (
-        <>
+    return (
+      <>
+        <ul className="navigation">
+          <li className="navigation-link__item">
+            <NavLink
+              className="navigation-link"
+              activeClassName="navigation-link_active"
+              to="/movies"
+            >
+              Фильмы
+            </NavLink>
+          </li>
+          <li className="navigation-link__item">
+            <NavLink
+              className="navigation-link"
+              activeClassName="navigation-link_active"
+              to="/saved-movies"
+            >
+              Сохранённые фильмы
+            </NavLink>
+          </li>
+          <li className="navigation-link__item">
+            <NavLink
+              className="navigation-link"
+              activeClassName="navigation-link_active"
+              to="/profile"
+            >
+              <p className="profile__name">Аккаунт</p>
+              <img className="profile__logo" src={profile_icon} alt="Профиль" />
+            </NavLink>
+          </li>
+        </ul>
+        <div className="burger">
           <img src={BurgerOpenIcon} alt="Отрыть меню" onClick={toggleBurger} />
           <div
             className={
@@ -66,42 +96,9 @@ function Navigation(props) {
               </NavLink>
             </div>
           </div>
-        </>
-      );
-    } else {
-      return (
-        <ul className="navigation">
-          <li className="navigation-link__item">
-            <NavLink
-              className="navigation-link"
-              activeClassName="navigation-link_active"
-              to="/movies"
-            >
-              Фильмы
-            </NavLink>
-          </li>
-          <li className="navigation-link__item">
-            <NavLink
-              className="navigation-link"
-              activeClassName="navigation-link_active"
-              to="/saved-movies"
-            >
-              Сохранённые фильмы
-            </NavLink>
-          </li>
-          <li className="navigation-link__item">
-            <NavLink
-              className="navigation-link"
-              activeClassName="navigation-link_active"
-              to="/profile"
-            >
-              <p className="profile__name">Аккаунт</p>
-              <img className="profile__logo" src={profile_icon} alt="Профиль" />
-            </NavLink>
-          </li>
-        </ul>
-      );
-    }
+        </div>
+      </>
+    );
   } else {
     return (
       <ul className="not-logon">
