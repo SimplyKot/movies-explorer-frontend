@@ -10,6 +10,7 @@ function Login(props) {
   });
   function handleSubmit(e) {
     e.preventDefault();
+    props.onLogin();
   }
 
   function handleChange(e) {

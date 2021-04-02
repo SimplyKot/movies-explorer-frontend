@@ -195,4 +195,17 @@
   .navigation {
     display: none;
   }
+
+  .not-logon {
+    font-size: calc(10px + 0.0044642 * (100vw - 320px));
+  }
+
+  /* 20-8 12-5 */
+  .not-logon__link_type_button {
+    padding: calc(5px + 0.0067 * (100vw - 320px))
+      calc(12px + 0.0178571 * (100vw - 320px));
+
+    /* 14-30 */
+    margin-left: calc(14px + 0.03571 * (100vw - 320px));
+  }
 }

@@ -1,4 +1,5 @@
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { useState } from "react";
 
 import "./App.css";
 import Header from "../Header/Header";
@@ -12,10 +13,18 @@ import NotFoundError from "../NotFoundError/NotFoundError";
 import Footer from "../Footer/Footer";
 
 function App() {
+  const history = useHistory();
+  const [isLogged, setIsLogged] = useState(false);
+
+  function handleLogin() {
+    setIsLogged(true);
+    history.push("/");
+  }
+
   return (
     <div className="page">
       <div className="page__container">
-        <Header isLogged={true} isBurger={false} />
+        <Header isLogged={isLogged} />
         <Switch>
           <Route exact path="/">
             <Main />
@@ -24,7 +33,7 @@ function App() {
             <Register />
           </Route>
           <Route path="/login">
-            <Login />
+            <Login onLogin={handleLogin} />
           </Route>
           <Route path="/movies">
             <Movies />

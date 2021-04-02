@@ -5,7 +5,6 @@ import Navigation from "../Navigation/Navigation";
 
 function Header(props) {
   const history = useHistory();
-  const { isLogged, isBurger } = props;
 
   const path = props.location.pathname;
   if (path === "/login" || path === "/register" || path === "/404") {
@@ -26,7 +25,7 @@ function Header(props) {
         <img src={logo} alt="Зеленый логотип с улыбкой" />
       </nav>
 
-      <Navigation isLogged={isLogged} isBurger={isBurger} />
+      <Navigation isLogged={props.isLogged} />
     </header>
   );
 }
