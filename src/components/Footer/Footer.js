@@ -13,12 +13,12 @@ function Footer(props) {
   }
   return (
     <section className="footer">
-      <h1 className="footer_title">
+      <h1 className="footer__title">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </h1>
-      <div className="footer_bar">
+      <div className="footer__bar">
         <p className="copyright">&copy;2020</p>
-        <nav>
+        <nav className="footer__links-list">
           <ul className="footer__links">
             <li className="footer__link_item">
               <a

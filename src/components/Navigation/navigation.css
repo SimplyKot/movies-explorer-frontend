@@ -129,8 +129,8 @@
 }
 
 .burger-menu_hidden {
-  /* display: none; */
-  left: 100vw;
+  display: none;
+  /* left: 100vw; */
 }
 
 .burger-menu__close-button {
