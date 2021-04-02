@@ -1,6 +1,6 @@
 .promo {
   background-color: #073042;
-  padding: 75px 70px 85px;
+  padding: 75px calc(50px + 0.039 * (100vw - 768px)) 85px;
 }
 
 .promo__container {
@@ -56,4 +56,27 @@
 
 .promo__link:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 1090px) {
+  .promo__container {
+    padding-top: 65px;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .promo__text {
+    text-align: center;
+  }
+
+  .promo__title {
+    margin-top: 48px;
+  }
+
+  .promo__subtitle {
+    margin: 22px auto 0;
+  }
+
+  .promo__link {
+    margin-top: 92px;
+  }
 }
