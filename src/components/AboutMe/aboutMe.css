@@ -1,6 +1,6 @@
 .about-me {
   /* border: 1px dotted red; */
-  padding: 110px calc(50px + 0.039 * (100vw - 768px));
+  padding: 110px 70px;
 }
 
 .about-me__title {
@@ -13,7 +13,7 @@
 
 .about-me__container {
   margin: 23px 0 0 0;
-  padding: 66px 0 95px 0;
+  padding: 66px 0 100px 0;
   border-top: 1px solid #dadada;
 
   display: flex;
@@ -90,4 +90,51 @@
 
 .about-me__link:hover {
   opacity: 0.7;
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+  .about-me {
+    padding: calc(90px + 0.039 * (100vw - 768px))
+      calc(50px + 0.039 * (100vw - 768px));
+  }
+
+  .about-me__container {
+    /* 100-90 */
+    padding-bottom: calc(90px + 0.01953125 * (100vw - 768px));
+  }
+
+  .about-me__name {
+    font-size: calc(40px + 0.01953125 * (100vw - 768px));
+    line-height: calc(40px + 0.0351 * (100vw - 768px));
+  }
+  .about-me__info {
+    /* 12-18 18-20 */
+    font-size: calc(12px + 0.01171875 * (100vw - 768px));
+    line-height: calc(18px + 0.0039 * (100vw - 768px));
+
+    /* 16-18 */
+    margin-top: calc(16px + 0.0039 * (100vw - 768px));
+  }
+  .about-me__story {
+    /* 12-14 18-22 */
+    font-size: calc(12px + 0.0039 * (100vw - 768px));
+    line-height: calc(18px + 0.0078125 * (100vw - 768px));
+
+    /* 26-20 */
+    margin-top: calc(20px + 0.01171875 * (100vw - 768px));
+  }
+
+  .about-me__link-container {
+    /* 99-83 */
+    margin-top: calc(83px + 0.03125 * (100vw - 768px));
+  }
+  .about-me__photo {
+    /* 270-255 */
+    width: calc(255px + 0.0293 * (100vw - 768px));
+  }
+
+  .about-me__text {
+    /* 364/600 */
+    width: calc(364px + 0.4609375 * (100vw - 768px));
+  }
 }
