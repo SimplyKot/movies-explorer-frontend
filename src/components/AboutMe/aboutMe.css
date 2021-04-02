@@ -1,6 +1,6 @@
 .about-me {
   /* border: 1px dotted red; */
-  padding: 110px 70px;
+  padding: 110px calc(50px + 0.039 * (100vw - 768px));
 }
 
 .about-me__title {

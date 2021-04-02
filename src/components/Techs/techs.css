@@ -27,6 +27,11 @@
   margin: 26px auto;
   max-width: 460px;
   text-align: center;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.04em;
 }
 .tech__list {
   margin: 100px 0 0 0;
@@ -53,3 +58,29 @@
   background: #303030;
   border-radius: 10px;
 }
+
+@media (min-width: 768px) and (max-width: 1280px) {
+  .techs {
+    padding: calc(90px + 0.039 * (100vw - 768px))
+      calc(50px + 0.039 * (100vw - 768px));
+  }
+
+  .techs__subtitle {
+    padding-top: calc(80px + 0.019531 * (100vw - 768px));
+  }
+
+  .techs__text {
+    margin: calc(22px + 0.0078125 * (100vw - 768px)) auto;
+  }
+
+  .tech__list {
+    margin-top: calc(83px + 0.0332 * (100vw - 768px));
+  }
+
+  .tech__list-item {
+    width: calc(84px + 0.01171 * (100vw - 768px));
+    height: calc(57px + 0.00586 * (100vw - 768px));
+    font-size: calc(12px + 0.0039 * (100vw - 768px));
+  }
+}
+/* 90 - 60 */
