@@ -1,10 +1,10 @@
 .promo {
   background-color: #073042;
-  padding: 75px 70px 85px;
+  padding: 75px 70px;
 }
 
 .promo__container {
-  padding-top: 75px;
+  /* padding-top: 75px; */
   display: flex;
   justify-content: space-between;
   flex-direction: row-reverse;
@@ -12,10 +12,19 @@
   align-items: flex-start;
 }
 
+.promo__image {
+  max-width: 310px;
+  min-width: 210px;
+}
+
 .promo__text {
   margin: 0;
   /* border: 1px solid red; */
   max-width: 640px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .promo__title {
@@ -37,14 +46,17 @@
 }
 
 .promo__link-container {
-  margin-top: 156px;
-}
+  /* margin-top: 156px; */
 
-.promo__link {
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-sizing: border-box;
   border-radius: 3px;
+
+  margin: 146px 0 0 0;
   padding: 10px 20px;
+}
+
+.promo__link {
   color: #fff;
   font-weight: 500;
   font-size: 12px;
@@ -61,18 +73,30 @@
 @media (min-width: 768px) and (max-width: 1280px) {
   .promo {
     background-color: #073042;
-    padding: 75px calc(50px + 0.039 * (100vw - 768px)) 85px;
+    padding: calc(140px - 0.1269 * (100vw - 768px))
+      calc(50px + 0.039 * (100vw - 768px)) 75px;
+  }
+
+  /* 51/58 */
+  .promo__title {
+    font-size: calc(40px + 0.021 * (100vw - 768px));
+    line-height: calc(50px + 0.015625 * (100vw - 768px));
+  }
+  .promo__link-container {
+    /* 146/92   */
+    margin-top: calc(92px + 0.10547 * (100vw - 768px));
   }
 }
 
 @media (max-width: 1073px) {
   .promo__container {
-    padding-top: 65px;
+    /* padding-top: 65px; */
     flex-direction: row;
     justify-content: center;
   }
   .promo__text {
     text-align: center;
+    align-items: center;
   }
   .promo__title {
     margin-top: 48px;
@@ -84,5 +108,32 @@
 
   .promo__link {
     margin-top: 92px;
+  }
+}
+@media (max-width: 768px) {
+  .promo__image {
+    width: calc(210px + 0.22321 * (100vw - 320px));
+  }
+
+  /* 70-140 */
+  .promo {
+    padding: calc(70px + 0.15625 * (100vw - 320px)) 10px
+      calc(30px + 0.10044 * (100vw - 320px));
+  }
+
+  .promo__title {
+    /* 38-50 30-40 */
+    max-width: 660px;
+    font-size: calc(30px + 0.022321 * (100vw - 320px));
+    line-height: calc(38px + 0.02678571 * (100vw - 320px));
+    margin-top: calc(44px + 0.0089 * (100vw - 320px));
+  }
+  .promo__subtitle {
+    margin-top: calc(24px - 0.004464 * (100vw - 320px));
+  }
+
+  .promo__link-container {
+    /* 80-92 30-75 */
+    margin: calc(80px + 0.02678571 * (100vw - 320px)) 0 0 0;
   }
 }

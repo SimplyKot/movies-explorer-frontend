@@ -5,7 +5,7 @@ function Promo() {
   return (
     <section className="promo">
       <div className="promo__container">
-        <img src={globe} alt="Глобус WEB" />
+        <img className="promo__image" src={globe} alt="Глобус WEB" />
         <div className="promo__text">
           <h1 className="promo__title">
             Учебный проект студента факультета Веб-разработки.
