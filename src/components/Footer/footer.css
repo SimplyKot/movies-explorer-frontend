@@ -68,7 +68,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 500px) {
   .footer {
     padding: 0 calc(14px + 0.052734375 * (100vw - 320px));
   }
