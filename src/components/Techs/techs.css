@@ -104,6 +104,8 @@
     /* 60/28 80/23 */
     margin-top: calc(28px - 0.01116 * (100vw - 320px));
     padding-top: calc(60px + 0.044642 * (100vw - 320px));
+
+    border-top: 1px solid #000;
   }
   .tech__list {
     padding: 0 calc(10px - 0.022321 * (100vw - 320px));
