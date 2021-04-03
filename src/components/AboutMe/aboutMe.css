@@ -139,3 +139,17 @@
     width: calc(364px + 0.4609375 * (100vw - 768px));
   }
 }
+
+@media (max-width: 768px) {
+  .about-me {
+    max-width: 668px;
+    padding: 70px 14px;
+  }
+
+  .about-me__container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  /* TODO: Доделать в простом вариание */
+}
