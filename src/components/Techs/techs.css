@@ -108,5 +108,20 @@
   .tech__list {
     padding: 0 calc(10px - 0.022321 * (100vw - 320px));
     justify-content: flex-start;
+    max-width: 178px;
+    margin: 50px auto 0;
+  }
+
+  .tech__list-item {
+    width: 84px;
+    height: 57px;
+    /* font-size: calc(30px + 0.044642 * (100vw - 320px));
+    line-height: calc(36px + 0.0491 * (100vw - 320px)); */
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .tech__list :nth-child(2n) {
+    margin-right: 0;
   }
 }
