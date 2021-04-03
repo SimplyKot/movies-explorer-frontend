@@ -27,10 +27,15 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "plugins": [
+      "prettier",
+      "css-modules"
+    ],
     "extends": [
       "react-app",
       "react-app/jest",
-      "plugin:prettier/recommended"
+      "plugin:prettier/recommended",
+      "plugin:css-modules/recommended"
     ]
   },
   "eslintIgnore": [
@@ -58,6 +63,7 @@
   "devDependencies": {
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-prettier": "^3.3.1",
     "prettier-standard": "^16.4.1"
   }
