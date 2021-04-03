@@ -50,3 +50,13 @@
     font-size: calc(28px + 0.039 * (100vw - 768px));
   }
 }
+
+@media (max-width: 768px) {
+  .portfolio__title {
+    font-size: calc(14px + 0.00892 * (100vw - 320px));
+  }
+  .portfolio__link-item {
+    font-size: calc(18px + 0.022321 * (100vw - 320px));
+    line-height: calc(28px + 0.0491 * (100vw - 320px));
+  }
+}

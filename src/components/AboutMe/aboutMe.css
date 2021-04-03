@@ -97,7 +97,7 @@
   .about-me {
     padding: calc(90px + 0.039 * (100vw - 768px))
       calc(50px + 0.039 * (100vw - 768px))
-      calc(90px + 0.06836 * (100vw - 768px));
+      calc(75px + 0.06836 * (100vw - 768px));
   }
 
   .about-me__container {
@@ -145,7 +145,8 @@
   .about-me {
     max-width: calc(768px - 2 * 50px);
     /* 14-45=36 */
-    padding: 70px calc(14px + 0.08 * (100vw - 320px));
+    padding: 70px calc(14px + 0.08 * (100vw - 320px))
+      calc(45px + 0.044642 * (100vw - 320px));
   }
 
   .about-me__container {
