@@ -84,3 +84,29 @@
   }
 }
 /* 90 - 60 */
+@media (max-width: 768px) {
+  .techs {
+    padding: calc(70px + 0.1116 * (100vw - 320px))
+      calc(14px + 0.0892 * (100vw - 320px));
+  }
+
+  .techs__text {
+    margin-top: calc(24px + 0.0044642 * (100vw - 320px));
+    font-size: calc(11px + 0.01116 * (100vw - 320px));
+    line-height: calc(12px + 0.01339 * (100vw - 320px));
+  }
+
+  .techs__subtitle {
+    /* 30-36 50-58 */
+    font-size: calc(30px + 0.044642 * (100vw - 320px));
+    line-height: calc(36px + 0.0491 * (100vw - 320px));
+
+    /* 60/28 80/23 */
+    margin-top: calc(28px - 0.01116 * (100vw - 320px));
+    padding-top: calc(60px + 0.044642 * (100vw - 320px));
+  }
+  .tech__list {
+    padding: 0 calc(10px - 0.022321 * (100vw - 320px));
+    justify-content: flex-start;
+  }
+}
