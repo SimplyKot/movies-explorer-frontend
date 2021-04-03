@@ -28,6 +28,11 @@
   margin: 18px 0 0 18px;
 }
 
+.movie__text-block {
+  display: flex;
+  flex-direction: column;
+}
+
 .movie__title {
   margin: 0;
   font-size: 18px;
@@ -72,5 +77,16 @@
     width: 100%;
     margin-left: 0;
     align-self: center;
+  }
+
+  .movie__text-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+    margin: 14px 12px;
+  }
+  .movie__like-icon {
+    margin: 0;
   }
 }

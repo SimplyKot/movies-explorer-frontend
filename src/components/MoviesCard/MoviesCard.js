@@ -11,8 +11,10 @@ function MovieCard(props) {
   return (
     <div className="movie">
       <div className="movie__text-container">
-        <h1 className="movie__title">{movie.nameRU}</h1>
-        <h2 className="movie__duration">{movie.duration}</h2>
+        <div className="movie__text-block">
+          <h1 className="movie__title">{movie.nameRU}</h1>
+          <h2 className="movie__duration">{movie.duration}</h2>
+        </div>
         <div className="movie__like-icon">
           <img src={movie.liked === "true" ? like : heart} alt="В избранном" />
         </div>
