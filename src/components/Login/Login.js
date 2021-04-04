@@ -3,6 +3,7 @@ import logo from "../../images/logo.svg";
 import React from "react";
 import Form from "../Form/Form";
 import { withRouter, useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 function Login(props) {
   const history = useHistory();
@@ -71,9 +72,9 @@ function Login(props) {
       </Form>
       <div className="login__bottom-container">
         Ещё не зарегистрированы?
-        <a className="bottom__link" href="/register">
+        <Link className="bottom__link" to="/register">
           Регистрация
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import logo from "../../images/logo.svg";
 import React from "react";
 import Form from "../Form/Form";
 import { withRouter, useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 function Register(props) {
   const history = useHistory();
@@ -90,9 +91,9 @@ function Register(props) {
       </Form>
       <div className="register__bottom-container">
         Уже зарегистрированы?
-        <a className="bottom__link" href="/login">
+        <Link className="bottom__link" to="/login">
           Войти
-        </a>
+        </Link>
       </div>
     </div>
   );
