@@ -1,4 +1,10 @@
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import {
+  Route,
+  Switch,
+  Redirect,
+  useHistory,
+  BrowserRouter,
+} from "react-router-dom";
 import { useState } from "react";
 
 import "./App.css";
@@ -28,41 +34,43 @@ function App() {
   }
 
   return (
-    <div className="page">
-      <div className="page__container">
-        <Header isLogged={isLogged} />
-        <Switch>
-          <Route exact path="/">
-            <Main />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/login">
-            <Login onLogin={handleLogin} />
-          </Route>
-          <Route path="/movies">
-            <Movies />
-          </Route>
-          <Route path="/saved-movies">
-            <SavedMovies />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/404">
-            <NotFoundError />
-          </Route>
-          <Redirect from="*" to="/404" />
-        </Switch>
-        <Footer isInvisible={true} />
-        <ErrorPopup
-          message={"Что-то пошло не так"}
-          isOpen={isErrorOpen}
-          closeHandler={handleErrorClose}
-        />
+    <BrowserRouter>
+      <div className="page">
+        <div className="page__container">
+          <Header isLogged={isLogged} />
+          <Switch>
+            <Route exact path="/">
+              <Main />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/login">
+              <Login onLogin={handleLogin} />
+            </Route>
+            <Route path="/movies">
+              <Movies />
+            </Route>
+            <Route path="/saved-movies">
+              <SavedMovies />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/404">
+              <NotFoundError />
+            </Route>
+            <Redirect from="*" to="/404" />
+          </Switch>
+          <Footer isInvisible={true} />
+          <ErrorPopup
+            message={"Что-то пошло не так"}
+            isOpen={isErrorOpen}
+            closeHandler={handleErrorClose}
+          />
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
