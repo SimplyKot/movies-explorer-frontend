@@ -4,7 +4,7 @@
 
 https://kotomovies.students.nomoredomains.rocks
 
-## Ссылка на макет
+## Ссылка на макет Figma
 
 https://kotomovies.students.nomoredomains.rocks/kotoMovies.fig
 
