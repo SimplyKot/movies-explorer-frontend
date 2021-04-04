@@ -16,7 +16,7 @@ import ErrorPopup from "../ErrorPopup/ErrorPopup";
 function App() {
   const history = useHistory();
   const [isLogged, setIsLogged] = useState(false);
-  const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const [isErrorOpen, setIsErrorOpen] = useState(true);
 
   function handleLogin() {
     setIsLogged(true);

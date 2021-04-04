@@ -24,6 +24,8 @@
 
 .error-popup__close {
   margin: 24px 0 0 0;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .error-popup__close:hover {
