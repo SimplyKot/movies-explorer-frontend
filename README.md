@@ -6,7 +6,7 @@ https://kotomovies.students.nomoredomains.rocks
 
 ## Ссылка на макет
 
-https://kotomovies.students.nomoredomains.rocks/kotomovies.fig
+https://kotomovies.students.nomoredomains.rocks/kotoMovies.fig
 
 ## Проверочный функционал
 
