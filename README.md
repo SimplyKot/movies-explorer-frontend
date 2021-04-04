@@ -6,6 +6,8 @@ https://kotomovies.students.nomoredomains.rocks
 
 ## Ссылка на макет
 
+https://kotomovies.students.nomoredomains.rocks/kotomovies.fig
+
 ## Проверочный функционал
 
 1. Для проверки при загрузки приложения открыватся попап с ошибкой.
