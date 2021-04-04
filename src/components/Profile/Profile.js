@@ -39,7 +39,7 @@ function Profile(props) {
         title={`Привет, ${data.name}!`}
         onSubmit={handleSubmit}
       >
-        <div className="from__input-container">
+        <div className="from__input-container from__input-container_type_profile">
           <label
             className="form__label form__label_view_profile"
             htmlFor="email"
@@ -80,24 +80,21 @@ function Profile(props) {
         <nav className="profile__selector">
           <button
             type="submit"
-            className={`form__button form__button_view_profile ${
-              isEdit ? "" : "form__button_disabled"
-            }`}
+            className={`form__button form__button_view_profile
+            ${isEdit ? "" : "form__button_disabled"}`}
           >
             Сохранить
           </button>
           <p
-            className={`selector__button ${
-              isEdit ? "selector__button_disabled" : ""
-            }`}
+            className={`selector__button
+            ${isEdit ? "selector__button_disabled" : ""}`}
             onClick={handleEditMode}
           >
             Редактировать
           </p>
           <p
-            className={`selector__button selector__button_type_exit ${
-              isEdit ? "selector__button_disabled" : ""
-            }`}
+            className={`selector__button selector__button_type_exit
+            ${isEdit ? "selector__button_disabled" : ""}`}
             onClick={handleLogout}
           >
             Выйти из аккаунта
