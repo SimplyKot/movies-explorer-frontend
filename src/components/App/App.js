@@ -4,6 +4,7 @@ import {
   Redirect,
   useHistory,
   BrowserRouter,
+  withRouter,
 } from "react-router-dom";
 import { useState } from "react";
 
@@ -74,4 +75,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);
