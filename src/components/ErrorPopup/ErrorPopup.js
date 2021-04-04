@@ -10,7 +10,7 @@ function ErrorPopup(props) {
 
   return (
     <section className={`error-popup ${isOpen ? "error-popup_opened" : ""}`}>
-      <h1 className="error-popup__description">Пpоизошла ошиюка: {message}</h1>
+      <h1 className="error-popup__description">Пpоизошла ошибка: {message}</h1>
       <nav className="error-popup__close" onClick={handleCloseError}>
         Закрыть
       </nav>
