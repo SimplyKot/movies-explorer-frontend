@@ -32,9 +32,6 @@ function App() {
       <div className="page__container">
         <Header isLogged={isLogged} />
         <Switch>
-          <Route exact path="/">
-            <Main />
-          </Route>
           <Route path="/register">
             <Register />
           </Route>
@@ -54,6 +51,9 @@ function App() {
             <NotFoundError />
           </Route>
           <Redirect from="*" to="/404" />
+          <Route exact path="/">
+            <Main />
+          </Route>
         </Switch>
         <Footer isInvisible={true} />
         <ErrorPopup
