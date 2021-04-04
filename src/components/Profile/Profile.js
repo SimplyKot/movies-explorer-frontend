@@ -3,6 +3,7 @@ import { useState } from "react";
 import Form from "../Form/Form";
 
 function Profile(props) {
+  const { onLogout } = props;
   const [data, setData] = useState({
     name: "Виталий",
     email: "pochta@yandex.ru",
@@ -23,6 +24,7 @@ function Profile(props) {
 
   function handleLogout(e) {
     e.preventDefault();
+    onLogout();
     console.log("Выходим из аккаунта");
   }
 

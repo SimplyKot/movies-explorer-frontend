@@ -23,6 +23,11 @@ function App() {
     history.push("/");
   }
 
+  function handleLogout() {
+    setIsLogged(false);
+    history.push("/");
+  }
+
   function handleErrorClose() {
     setIsErrorOpen(false);
   }
@@ -35,22 +40,22 @@ function App() {
           <Route exact path="/">
             <Main />
           </Route>
-          <Route exact path="/register">
+          <Route path="/register">
             <Register />
           </Route>
-          <Route exact path="/login">
+          <Route path="/login">
             <Login onLogin={handleLogin} />
           </Route>
-          <Route exact path="/movies">
+          <Route path="/movies">
             <Movies />
           </Route>
-          <Route exact path="/saved-movies">
+          <Route path="/saved-movies">
             <SavedMovies />
           </Route>
-          <Route exact path="/profile">
-            <Profile />
+          <Route path="/profile">
+            <Profile onLogout={handleLogout} />
           </Route>
-          <Route exact path="/404">
+          <Route path="/404">
             <NotFoundError />
           </Route>
           <Redirect from="*" to="/404" />
