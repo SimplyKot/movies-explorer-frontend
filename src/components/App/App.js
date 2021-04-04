@@ -32,28 +32,28 @@ function App() {
       <div className="page__container">
         <Header isLogged={isLogged} />
         <Switch>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/login">
-            <Login onLogin={handleLogin} />
-          </Route>
-          <Route path="/movies">
-            <Movies />
-          </Route>
-          <Route path="/saved-movies">
-            <SavedMovies />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/404">
-            <NotFoundError />
-          </Route>
-          <Redirect from="*" to="/404" />
           <Route exact path="/">
             <Main />
           </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route exact path="/login">
+            <Login onLogin={handleLogin} />
+          </Route>
+          <Route exact path="/movies">
+            <Movies />
+          </Route>
+          <Route exact path="/saved-movies">
+            <SavedMovies />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
+          <Route exact path="/404">
+            <NotFoundError />
+          </Route>
+          <Redirect from="*" to="/404" />
         </Switch>
         <Footer isInvisible={true} />
         <ErrorPopup
