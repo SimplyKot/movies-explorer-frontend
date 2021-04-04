@@ -2,8 +2,10 @@ import "./login.css";
 import logo from "../../images/logo.svg";
 import React from "react";
 import Form from "../Form/Form";
+import { withRouter, useHistory } from "react-router";
 
 function Login(props) {
+  const history = useHistory();
   const [data, setData] = React.useState({
     name: "Виталий",
     email: "pochta@yandex.ru",
@@ -18,6 +20,10 @@ function Login(props) {
     setData({ ...data, [name]: value });
   }
 
+  function logoClickHandler() {
+    history.push("/");
+  }
+
   return (
     <div className="login">
       <div className="login__top-container">
@@ -25,6 +31,7 @@ function Login(props) {
           className="login__logo"
           src={logo}
           alt="Зеленый логотип с улыбкой"
+          onClick={logoClickHandler}
         />
       </div>
       <Form name="login" title="Рады видеть!" onSubmit={handleSubmit}>
@@ -71,4 +78,4 @@ function Login(props) {
     </div>
   );
 }
-export default Login;
+export default withRouter(Login);

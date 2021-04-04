@@ -2,8 +2,11 @@ import "./register.css";
 import logo from "../../images/logo.svg";
 import React from "react";
 import Form from "../Form/Form";
+import { withRouter, useHistory } from "react-router";
 
 function Register(props) {
+  const history = useHistory();
+
   const [data, setData] = React.useState({
     name: "Виталий",
     email: "pochta@yandex.ru",
@@ -19,6 +22,10 @@ function Register(props) {
     setData({ ...data, [name]: value });
   }
 
+  function logoClickHandler() {
+    history.push("/");
+  }
+
   return (
     <div className="register">
       <div className="register__top-container">
@@ -26,6 +33,7 @@ function Register(props) {
           className="register__logo"
           src={logo}
           alt="Зеленый логотип с улыбкой"
+          onClick={logoClickHandler}
         />
       </div>
       <Form name="register" title="Добро пожаловать!" onSubmit={handleSubmit}>
@@ -89,4 +97,4 @@ function Register(props) {
     </div>
   );
 }
-export default Register;
+export default withRouter(Register);

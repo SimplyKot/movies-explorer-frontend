@@ -13,8 +13,11 @@
 
 .register__logo {
   max-width: 38px;
+  transition: 0.2s;
 }
-
+.register__logo:hover {
+  opacity: 0.8;
+}
 .register__bottom-container {
   margin: 16px 0 0 0;
 

@@ -5,7 +5,7 @@ function Form(props) {
     <form
       className="form__content"
       name={`${props.name}-form`}
-      noValidate
+      // noValidate
       onSubmit={props.onSubmit}
     >
       <h2 className="form__title">{props.title}</h2>
