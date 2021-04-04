@@ -56,3 +56,30 @@
   transition: 0.2s;
   opacity: 0.7;
 }
+
+@media (max-width: 1280px) and (min-width: 768px) {
+  .not-found__link {
+    margin-bottom: calc(222px - 162 / 512 * (100vw - 768px));
+  }
+}
+
+@media (max-width: 768px) {
+  .not-found__link {
+    margin-bottom: calc(30px + 192 / 448 * (100vw - 320px));
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .not-found__title {
+    font-size: calc(80px + 60 / 448 * (100vw - 320px));
+    line-height: calc(97px + 72 / 448 * (100vw - 320px));
+  }
+
+  .not-found__message {
+    margin-top: calc(10px - 5 / 448 * (100vw - 320px));
+
+    font-size: calc(12px + 4 / 448 * (100vw - 320px));
+    line-height: calc(15px + 4 / 448 * (100vw - 320px));
+  }
+}
+/* 60 222 30 */
