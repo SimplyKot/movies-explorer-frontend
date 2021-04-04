@@ -1,6 +1,5 @@
 import "./promo.css";
 import globe from "../../images/globe.svg";
-import { Link } from "react-router-dom";
 
 function Promo() {
   return (
@@ -15,14 +14,14 @@ function Promo() {
             Листайте ниже, чтобы узнать больше про этот проект и его создателя.
           </p>
           <div className="promo__link-container">
-            <Link
+            <a
               className="promo__link"
-              to="https://praktikum.yandex.ru/web/"
+              href="https://praktikum.yandex.ru/web/"
               target={"_blank"}
               rel="noreferrer"
             >
               Узнать больше
-            </Link>
+            </a>
           </div>
         </div>
       </div>
