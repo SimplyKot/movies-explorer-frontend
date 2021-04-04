@@ -181,7 +181,6 @@
 .burger-menu__item_type_profile {
   position: absolute;
   bottom: 0;
-  margin-bottom: calc();
   margin: 0;
 
   /* margin-bottom: 8vh; */
