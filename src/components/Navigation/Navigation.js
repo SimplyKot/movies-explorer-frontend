@@ -1,5 +1,5 @@
 import "./navigation.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 import profile_icon from "../../images/profile.svg";
 import BurgerCloseIcon from "../../images/burger-close.svg";
@@ -103,17 +103,17 @@ function Navigation(props) {
     return (
       <ul className="not-logon">
         <li>
-          <a className="not-logon__link" href="register">
+          <Link className="not-logon__link" to="/register">
             Регистрация
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             className="not-logon__link not-logon__link_type_button"
-            href="/login"
+            to="/login"
           >
             Войти
-          </a>
+          </Link>
         </li>
       </ul>
     );
