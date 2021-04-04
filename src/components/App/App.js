@@ -11,14 +11,20 @@ import Register from "../Register/Register";
 import Profile from "../Profile/Profile";
 import NotFoundError from "../NotFoundError/NotFoundError";
 import Footer from "../Footer/Footer";
+import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
 function App() {
   const history = useHistory();
   const [isLogged, setIsLogged] = useState(false);
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
 
   function handleLogin() {
     setIsLogged(true);
     history.push("/");
+  }
+
+  function handleErrorClose() {
+    setIsErrorOpen(false);
   }
 
   return (
@@ -50,6 +56,11 @@ function App() {
           <Redirect from="*" to="/404" />
         </Switch>
         <Footer isInvisible={true} />
+        <ErrorPopup
+          message={"Что-то пошло не так"}
+          isOpen={isErrorOpen}
+          closeHandler={handleErrorClose}
+        />
       </div>
     </div>
   );
