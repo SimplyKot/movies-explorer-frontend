@@ -117,7 +117,7 @@
   }
 
   .form__field_view_profile {
-    width: 37.5%;
+    /* width: 37.5%; */
     max-width: 122px;
   }
 
@@ -130,8 +130,8 @@
   }
 
   .profile__selector {
-    margin-top: calc(379px -16px - 169 / 448 * (100vw - 320));
-    padding-bottom: calc(40px + 229 / 448 * (100vw - 320));
+    margin-top: calc(379px - 16px - 169 / 448 * (100vw - 320px));
+    padding-bottom: calc(40px + 229 / 448 * (100vw - 320px));
   }
 }
 
