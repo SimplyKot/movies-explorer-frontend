@@ -17,7 +17,7 @@ function SearchForm() {
   return (
     <section className="serach-form">
       <div className="search-string">
-        <input className="search-string__input" placeholder="Фильм" />
+        <input className="search-string__input" placeholder="Фильм" required />
         <button className="serach-form__button">
           <img src={searchIcon} alt="Найти" />
         </button>
