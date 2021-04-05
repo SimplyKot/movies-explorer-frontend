@@ -1,0 +1,33 @@
+.error-popup {
+  display: none;
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 2;
+  opacity: 0.8;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-popup_opened {
+  display: flex;
+}
+
+.error-popup__description {
+  margin: 48px 0px;
+  font-size: 24px;
+}
+
+.error-popup__close {
+  margin: 24px 0 0 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.error-popup__close:hover {
+  opacity: 0.7;
+}

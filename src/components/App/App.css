@@ -1,0 +1,27 @@
+.page {
+  /*устанавливаем шрифты для страницы по умолчанию*/
+  font-family: 'Inter', Arial, sans-serif;
+  /*устанавливаем цвет бекграунда страницы*/
+  background-color:  #202020;
+  /*устанавливаем цвет текста страницы*/
+  color: #ffffff;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  /*Задаем позиционирование для работы попапа*/
+  position: relative;
+}
+
+.page__container {
+  /*установили ограничение по максимальной ширине */
+  max-width: 1280px;
+  min-width: 320px;
+  min-height: 100vh;
+  /*для экранов больше 1280px отцентрировали весь контент */
+  margin: 0 auto;
+  /*overflow: hidden;*/
+
+}

@@ -1,0 +1,190 @@
+.about-me {
+  /* border: 1px dotted red; */
+  padding: 110px 70px;
+  transition: all 0.5s;
+}
+
+.about-me__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+}
+
+.about-me__container {
+  margin: 23px 0 0 0;
+  padding: 66px 0 100px 0;
+  border-top: 1px solid #dadada;
+
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.about-me__text {
+  margin: 0;
+  /* border: 1px solid red; */
+  max-width: 600px;
+}
+
+.about-me__photo {
+  max-width: 270px;
+  border-radius: 10px;
+}
+
+.about-me__name {
+  margin: 0;
+
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
+
+.about-me__info {
+  margin: 18px 0 0 0;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.about-me__story {
+  margin: 26px 0 0 0;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.about-me__link-container {
+  margin: 99px 0 0 0;
+}
+
+.about-me__links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.about-me__links :last-child {
+  margin: 0;
+}
+
+.about-me__link-item {
+  margin: 0 20px 0 0;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+.about-me__link {
+  color: #fff;
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.about-me__link:hover {
+  opacity: 0.7;
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+  .about-me {
+    padding: calc(90px + 0.039 * (100vw - 768px))
+      calc(50px + 0.039 * (100vw - 768px))
+      calc(75px + 0.06836 * (100vw - 768px));
+  }
+
+  .about-me__container {
+    /* 100-90 */
+    padding-bottom: calc(90px + 0.01953125 * (100vw - 768px));
+  }
+
+  .about-me__name {
+    font-size: calc(40px + 0.01953125 * (100vw - 768px));
+    line-height: calc(40px + 0.0351 * (100vw - 768px));
+  }
+  .about-me__info {
+    /* 12-18 18-20 */
+    font-size: calc(12px + 0.01171875 * (100vw - 768px));
+    line-height: calc(18px + 0.0039 * (100vw - 768px));
+
+    /* 16-18 */
+    margin-top: calc(16px + 0.0039 * (100vw - 768px));
+  }
+  .about-me__story {
+    /* 12-14 18-22 */
+    font-size: calc(12px + 0.0039 * (100vw - 768px));
+    line-height: calc(18px + 0.0078125 * (100vw - 768px));
+
+    /* 26-20 */
+    margin-top: calc(20px + 0.01171875 * (100vw - 768px));
+  }
+
+  .about-me__link-container {
+    /* 99-83 */
+    margin-top: calc(83px + 0.03125 * (100vw - 768px));
+  }
+  .about-me__photo {
+    /* 270-255 */
+    width: calc(255px + 0.0293 * (100vw - 768px));
+  }
+
+  .about-me__text {
+    /* 364/600 */
+    width: calc(364px + 0.4609375 * (100vw - 768px));
+  }
+}
+
+@media (max-width: 767px) {
+  .about-me {
+    max-width: calc(768px - 2 * 50px);
+    /* 14-45=36 */
+    padding: 70px calc(14px + 0.08 * (100vw - 320px))
+      calc(45px + 0.044642 * (100vw - 320px));
+  }
+
+  .about-me__container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  /* TODO: Доделать в простом вариание */
+  /* 18-22 22-27 */
+  .about-me__title {
+    font-size: calc(18px + 0.00892 * (100vw - 320px));
+    line-height: calc(22px + 0.01116 * (100vw - 320px));
+  }
+
+  .about-me__container {
+    /* 60-66 =6 28-23 = 5*/
+    padding-top: calc(60px + 0.013392 * (100vw - 320px));
+    margin-top: calc(28px - 0.01116 * (100vw - 320px));
+    padding-bottom: calc(70px + 0.044642 * (100vw - 320px));
+  }
+  /* .about-me__photo {
+    margin: 0 1px;
+  } */
+  .about-me__name {
+    margin-top: 40px;
+    /* 30-40 36-40 */
+    font-size: calc(30px + 0.022321 * (100vw - 320px));
+    line-height: calc(36px + 0.00892 * (100vw - 320px));
+  }
+  .about-me__info {
+    margin-top: calc(20px - 0.00892 * (100vw - 320px));
+    font-size: calc(11px + 0.0022321 * (100vw - 320px));
+    line-height: calc(16px + 0.0044642 * (100vw - 320px));
+  }
+  .about-me__link-container {
+    margin-top: calc(40px + 0.10491 * (100vw - 320px));
+  }
+  .about-me__text {
+    max-width: none;
+  }
+}
