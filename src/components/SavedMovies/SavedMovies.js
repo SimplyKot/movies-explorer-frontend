@@ -3,7 +3,7 @@ import "./savedmovies.css";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-import hardCodeMovies from "../../utils/constants";
+import { hardCodeMovies } from "../../utils/constants";
 const savedMovies = hardCodeMovies.filter((movie) => {
   return movie.liked === "true";
 });

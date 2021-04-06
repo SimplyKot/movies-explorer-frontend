@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 import Header from "../Header/Header";
@@ -13,10 +13,16 @@ import NotFoundError from "../NotFoundError/NotFoundError";
 import Footer from "../Footer/Footer";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
+import connectMoviesApi from "../../utils/MoviesApi";
+
 function App() {
   const history = useHistory();
   const [isLogged, setIsLogged] = useState(false);
   const [isErrorOpen, setIsErrorOpen] = useState(true);
+
+  useEffect(() => {
+    getMovies();
+  }, []);
 
   function handleLogin() {
     setIsLogged(true);
@@ -30,6 +36,13 @@ function App() {
 
   function handleErrorClose() {
     setIsErrorOpen(false);
+  }
+
+  function getMovies() {
+    connectMoviesApi
+      .getMovies()
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   }
 
   return (

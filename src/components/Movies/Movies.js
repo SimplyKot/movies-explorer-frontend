@@ -4,7 +4,7 @@ import SearchMovies from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-import hardCodeMovies from "../../utils/constants";
+import { hardCodeMovies } from "../../utils/constants";
 
 function Movies() {
   return (
