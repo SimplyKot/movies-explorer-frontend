@@ -1,5 +1,4 @@
 import { moviesConnectConfig as connectConfig } from "./constants";
-console.log(connectConfig);
 
 class Api {
   constructor({ baseUrl, headers }) {

@@ -8,12 +8,17 @@ function MovieCard(props) {
   const { movie, component } = props;
   const like = component === "saved-movies" ? cross : heartLike;
 
+  function timeToString(duration) {
+    // TODO: Сделать функцию перевода минут в читаемую строку
+    return duration;
+  }
+
   return (
     <div className="movie">
       <div className="movie__text-container">
         <div className="movie__text-block">
           <h1 className="movie__title">{movie.nameRU}</h1>
-          <h2 className="movie__duration">{movie.duration}</h2>
+          <h2 className="movie__duration">{timeToString(movie.duration)}</h2>
         </div>
         <div className="movie__like-icon">
           <img src={movie.liked === "true" ? like : heart} alt="В избранном" />
@@ -22,7 +27,7 @@ function MovieCard(props) {
       <div className="movie__image-container">
         <img
           className="movie__image"
-          src={movie.imageUrl}
+          src={`https://api.nomoreparties.co${movie.image.url}`}
           alt="Обложка фильма"
         />
       </div>

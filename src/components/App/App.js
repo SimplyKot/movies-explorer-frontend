@@ -18,11 +18,13 @@ import connectMoviesApi from "../../utils/MoviesApi";
 function App() {
   const history = useHistory();
   const [isLogged, setIsLogged] = useState(false);
-  const [isErrorOpen, setIsErrorOpen] = useState(true);
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const [externalMovies, setExternalMovies] = useState([]);
+  const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
-    getMovies();
-  }, []);
+    console.log(externalMovies);
+  }, [externalMovies]);
 
   function handleLogin() {
     setIsLogged(true);
@@ -38,10 +40,17 @@ function App() {
     setIsErrorOpen(false);
   }
 
-  function getMovies() {
+  function getMovies(searchQuery) {
+    // Отображаем прелоадер
+    setIsPending(true);
+    // Запрос к внешнему API
     connectMoviesApi
       .getMovies()
-      .then((data) => console.log(data))
+      .then((data) => {
+        setExternalMovies(data.slice(0, 3));
+        // Скрываем прелоадер
+        setIsPending(false);
+      })
       .catch((err) => console.log(err));
   }
 
@@ -60,7 +69,11 @@ function App() {
             <Login onLogin={handleLogin} />
           </Route>
           <Route path="/movies">
-            <Movies />
+            <Movies
+              movies={externalMovies}
+              onRequest={getMovies}
+              onPending={isPending}
+            />
           </Route>
           <Route path="/saved-movies">
             <SavedMovies />
