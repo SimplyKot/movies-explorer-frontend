@@ -47,7 +47,7 @@ function App() {
     connectMoviesApi
       .getMovies()
       .then((data) => {
-        setExternalMovies(data.slice(0, 3));
+        setExternalMovies(data);
         // Скрываем прелоадер
         setIsPending(false);
       })

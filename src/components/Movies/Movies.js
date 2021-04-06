@@ -1,11 +1,8 @@
 import "./movies.css";
-import { useState } from "react";
 import SearchMovies from "../SearchForm/SearchForm";
 // eslint-disable-next-line no-unused-vars
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-
-import { hardCodeMovies } from "../../utils/constants";
 
 function Movies(props) {
   const { onRequest, movies, onPending } = props;

@@ -3,6 +3,7 @@ import "./moviecard.css";
 import heart from "../../images/heart-transparent.svg";
 import heartLike from "../../images/heart-colored.svg";
 import cross from "../../images/cross.svg";
+import movieImgPlaceholder from "../../images/movie_placeholder.svg";
 
 function MovieCard(props) {
   const { movie, component } = props;
@@ -10,7 +11,14 @@ function MovieCard(props) {
 
   function timeToString(duration) {
     // TODO: Сделать функцию перевода минут в читаемую строку
-    return duration;
+    return `${Math.floor(duration / 60)}ч ${duration % 60}м`;
+  }
+
+  function composeImageUrl(movie) {
+    if (!movie.image) {
+      return movieImgPlaceholder;
+    }
+    return `https://api.nomoreparties.co${movie.image.url}`;
   }
 
   return (
@@ -27,7 +35,7 @@ function MovieCard(props) {
       <div className="movie__image-container">
         <img
           className="movie__image"
-          src={`https://api.nomoreparties.co${movie.image.url}`}
+          src={composeImageUrl(movie)}
           alt="Обложка фильма"
         />
       </div>
