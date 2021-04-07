@@ -4,6 +4,7 @@ import searchIcon from "../../images/search-icon.svg";
 import React from "react";
 
 function SearchForm(props) {
+  const { onSearch } = props;
   const [ioSwitch, setIoSwitch] = useState("switch switchOn");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -23,7 +24,7 @@ function SearchForm(props) {
 
   function submitHandler(e) {
     e.preventDefault();
-    props.onSearch(searchQuery);
+    onSearch(searchQuery);
   }
 
   return (

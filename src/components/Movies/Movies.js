@@ -1,16 +1,14 @@
 import "./movies.css";
 import SearchMovies from "../SearchForm/SearchForm";
-// eslint-disable-next-line no-unused-vars
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies(props) {
-  const { onRequest, movies, onPending } = props;
-  console.log(movies);
+  const { movies, onPending, onSearch } = props;
 
   return (
     <section className="movies">
-      <SearchMovies onSearch={onRequest} />
+      <SearchMovies onSearch={onSearch} />
       {onPending ? <Preloader /> : ""}
       <MoviesCardList movies={movies} />
       <div className="movies__button-container">

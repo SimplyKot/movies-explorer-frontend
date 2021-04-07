@@ -10,7 +10,6 @@ function MovieCard(props) {
   const like = component === "saved-movies" ? cross : heartLike;
 
   function timeToString(duration) {
-    // TODO: Сделать функцию перевода минут в читаемую строку
     return `${Math.floor(duration / 60)}ч ${duration % 60}м`;
   }
 

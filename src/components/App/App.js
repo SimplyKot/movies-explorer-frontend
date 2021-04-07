@@ -20,6 +20,7 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [externalMovies, setExternalMovies] = useState([]);
+  const [foundMovies, setFoundMovies] = useState([]);
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
@@ -40,18 +41,35 @@ function App() {
     setIsErrorOpen(false);
   }
 
-  function getMovies(searchQuery) {
-    // Отображаем прелоадер
+  function getMovies() {
+    if (!externalMovies.length) {
+      // Запрос к внешнему API
+      connectMoviesApi
+        .getMovies()
+        .then((data) => {
+          setExternalMovies(data);
+          // Скрываем прелоадер
+          console.log("Выполнили запрос к серверу и возвращаем результат");
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+          return {
+            message:
+              "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз",
+          };
+        });
+    } else {
+      console.log("Возвращаем локальные данные");
+      return externalMovies;
+    }
+  }
+
+  function searchExternalMovies(searchString) {
     setIsPending(true);
-    // Запрос к внешнему API
-    connectMoviesApi
-      .getMovies()
-      .then((data) => {
-        setExternalMovies(data);
-        // Скрываем прелоадер
-        setIsPending(false);
-      })
-      .catch((err) => console.log(err));
+    console.log(getMovies());
+    console.log(searchString);
+    setIsPending(false);
   }
 
   return (
@@ -72,6 +90,7 @@ function App() {
             <Movies
               movies={externalMovies}
               onRequest={getMovies}
+              onSearch={searchExternalMovies}
               onPending={isPending}
             />
           </Route>
