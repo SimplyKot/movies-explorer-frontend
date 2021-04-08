@@ -5,15 +5,11 @@ import React from "react";
 
 function SearchForm(props) {
   const { onSearch } = props;
-  const [ioSwitch, setIoSwitch] = useState("switch switchOn");
+  const [ioSwitch, setIoSwitch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   function toggleSwitch() {
-    if (ioSwitch === "switch") {
-      setIoSwitch("switch switchOn");
-    } else {
-      setIoSwitch("switch");
-    }
+    setIoSwitch(!ioSwitch);
   }
 
   function onChange(e) {
@@ -24,7 +20,7 @@ function SearchForm(props) {
 
   function submitHandler(e) {
     e.preventDefault();
-    onSearch(searchQuery);
+    onSearch({ string: searchQuery, shortFilm: ioSwitch });
   }
 
   return (
@@ -43,7 +39,10 @@ function SearchForm(props) {
       <div className="search-string__selector">
         <label className="checkbox__label">Короткометражки</label>
         <input type="checkbox" name="checkboxName" className="checkbox" />
-        <div className={ioSwitch} onClick={toggleSwitch}></div>
+        <div
+          className={`switch ${ioSwitch ? "switchOn" : ""}`}
+          onClick={toggleSwitch}
+        ></div>
       </div>
     </form>
   );

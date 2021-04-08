@@ -14,6 +14,7 @@ import Footer from "../Footer/Footer";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
 import connectMoviesApi from "../../utils/MoviesApi";
+import { moviesConnectConfig } from "../../utils/constants";
 
 function App() {
   const history = useHistory();
@@ -42,34 +43,27 @@ function App() {
   }
 
   function getMovies() {
-    if (!externalMovies.length) {
-      // Запрос к внешнему API
-      connectMoviesApi
-        .getMovies()
-        .then((data) => {
-          setExternalMovies(data);
-          // Скрываем прелоадер
-          console.log("Выполнили запрос к серверу и возвращаем результат");
-          return data;
-        })
-        .catch((err) => {
-          console.log(err);
-          return {
-            message:
-              "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз",
-          };
-        });
-    } else {
-      console.log("Возвращаем локальные данные");
-      return externalMovies;
-    }
+    setIsPending(true);
+    // Запрос к внешнему API
+    connectMoviesApi
+      .getMovies()
+      .then((data) => {
+        setExternalMovies(data);
+        // Скрываем прелоадер
+        console.log("Выполнили запрос к серверу и возвращаем результат");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setIsPending(false));
   }
 
-  function searchExternalMovies(searchString) {
-    setIsPending(true);
-    console.log(getMovies());
-    console.log(searchString);
-    setIsPending(false);
+  function searchExternalMovies(searchObject) {
+    setFoundMovies(
+      externalMovies.filter((movie) => {
+        return movie.nameRU.includes(searchObject.string);
+      })
+    );
   }
 
   return (
@@ -88,7 +82,7 @@ function App() {
           </Route>
           <Route path="/movies">
             <Movies
-              movies={externalMovies}
+              movies={foundMovies}
               onRequest={getMovies}
               onSearch={searchExternalMovies}
               onPending={isPending}
