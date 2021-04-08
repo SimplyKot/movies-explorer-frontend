@@ -59,9 +59,13 @@ function App() {
   }
 
   function searchExternalMovies(searchObject) {
+    console.log(searchObject);
     setFoundMovies(
       externalMovies.filter((movie) => {
-        return movie.nameRU.includes(searchObject.string);
+        return (
+          movie.nameRU.includes(searchObject.string) &&
+          (searchObject.shortFilm ? movie.duration < 40 : true)
+        );
       })
     );
   }

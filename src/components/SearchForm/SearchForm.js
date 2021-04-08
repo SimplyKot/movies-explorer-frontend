@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./searchform.css";
 import searchIcon from "../../images/search-icon.svg";
 import React from "react";
@@ -7,6 +7,12 @@ function SearchForm(props) {
   const { onSearch } = props;
   const [ioSwitch, setIoSwitch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    if (searchQuery) {
+      onSearch({ string: searchQuery, shortFilm: ioSwitch });
+    }
+  }, [ioSwitch]);
 
   function toggleSwitch() {
     setIoSwitch(!ioSwitch);
