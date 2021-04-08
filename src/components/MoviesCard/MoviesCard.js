@@ -21,9 +21,8 @@ function MovieCard(props) {
   }
 
   function clickHandle(e) {
-    // TODO: Разобраться со всплытием события
-    e.stopImmediatePropagation();
-    console.log(e);
+    e.preventDefault();
+    e.stopPropagation();
     console.log("Like/dislike click");
   }
 
@@ -39,8 +38,12 @@ function MovieCard(props) {
           <h1 className="movie__title">{movie.nameRU}</h1>
           <h2 className="movie__duration">{timeToString(movie.duration)}</h2>
         </div>
-        <div className="movie__like-icon" onClick={clickHandle}>
-          <img src={movie.liked === "true" ? like : heart} alt="В избранном" />
+        <div className="movie__like-icon">
+          <img
+            src={movie.liked === "true" ? like : heart}
+            alt="В избранном"
+            onClick={clickHandle}
+          />
         </div>
       </div>
       <div className="movie__image-container">

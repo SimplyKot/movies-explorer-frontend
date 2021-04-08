@@ -60,7 +60,7 @@ function App() {
   }
 
   function searchExternalMovies(searchObject) {
-    console.log(searchObject);
+    // console.log(searchObject);
     setFoundMovies(
       externalMovies.filter((movie) => {
         return (
