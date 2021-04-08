@@ -14,7 +14,6 @@ import Footer from "../Footer/Footer";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
 import connectMoviesApi from "../../utils/MoviesApi";
-import { moviesConnectConfig } from "../../utils/constants";
 
 function App() {
   const history = useHistory();
