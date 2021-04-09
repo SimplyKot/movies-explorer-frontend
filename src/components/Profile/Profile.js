@@ -1,20 +1,34 @@
 import "./profile.css";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import Form from "../Form/Form";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Profile(props) {
-  const { onLogout } = props;
-  const [data, setData] = useState({
-    name: "Виталий",
-    email: "pochta@yandex.ru",
-  });
-
+  const currentUser = useContext(CurrentUserContext);
+  const { onLogout, onUpdate } = props;
+  const [data, setData] = useState(currentUser);
   const [isEdit, setIsEdit] = useState(false);
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
+  useEffect(() => {
+    if (data.name !== currentUser.name || data.email !== currentUser.email) {
+      setIsButtonActive(true);
+    } else {
+      setIsButtonActive(false);
+    }
+  }, [data, currentUser]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setIsEdit(false);
-    console.log("Сохраняем изменения");
+    onUpdate(data)
+      .then((res) => {
+        console.log("Сохранили изменения");
+        setIsEdit(false);
+      })
+      .catch((err) => {
+        console.log("Произошла ошибка при сохранении");
+        console.log(err);
+      });
   }
 
   function handleChange(e) {
@@ -57,6 +71,7 @@ function Profile(props) {
             required
             value={data.name || ""}
             onChange={handleChange}
+            disabled={!isEdit}
           />
           <span className="form__field-error" id="email-input-error"></span>
         </div>
@@ -76,14 +91,18 @@ function Profile(props) {
             required
             value={data.email || ""}
             onChange={handleChange}
+            disabled={!isEdit}
           />
           <span className="form__field-error" id="email-input-error"></span>
         </div>
         <nav className="profile__selector">
+          {/* TODO: Сделать сообщение об ошибке над кнопкой */}
           <button
             type="submit"
             className={`form__button form__button_view_profile
-            ${isEdit ? "" : "form__button_disabled"}`}
+            ${isEdit ? "" : " form__button_disabled"}
+            ${isButtonActive ? "" : " form__button_inactive"}`}
+            disabled={!isButtonActive}
           >
             Сохранить
           </button>

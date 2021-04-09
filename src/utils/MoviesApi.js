@@ -25,5 +25,5 @@ class Api {
   }
 }
 
-const connectMoviesApi = new Api(connectConfig);
-export default connectMoviesApi;
+const moviesApi = new Api(connectConfig);
+export default moviesApi;

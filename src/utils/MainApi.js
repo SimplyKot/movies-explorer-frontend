@@ -45,7 +45,7 @@ class Api {
     // `${this._baseUrl}/users/me` PATCH
     return this._transmit(`${this._baseUrl}/users/me`, "PATCH", {
       name: data.name,
-      about: data.about,
+      email: data.email,
     }).then(this._checkResponse);
   }
 
@@ -60,5 +60,5 @@ class Api {
   }
 }
 
-const connectMainApi = new Api(connectConfig);
-export default connectMainApi;
+const mainApi = new Api(connectConfig);
+export default mainApi;

@@ -13,9 +13,11 @@ import NotFoundError from "../NotFoundError/NotFoundError";
 import Footer from "../Footer/Footer";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
-import connectMoviesApi from "../../utils/MoviesApi";
-import connectMainApi from "../../utils/MainApi";
+import moviesApi from "../../utils/MoviesApi";
+import mainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
+
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
   const history = useHistory();
@@ -25,6 +27,10 @@ function App() {
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    tokenCheck();
+  }, []);
 
   useEffect(() => {
     console.log(externalMovies);
@@ -60,19 +66,23 @@ function App() {
   }
 
   function handleLogin(data) {
-    // TODO: Разобраться с CORS
     return auth
       .authorize(data)
       .then((res) => {
         localStorage.setItem("jwt", res.token);
       })
       .then(tokenCheck)
+      .then(() => {
+        history.push("/movies");
+      })
       .catch((err) => {
         console.log(err);
       });
   }
 
   function handleLogout() {
+    localStorage.removeItem("jwt");
+    setCurrentUser({});
     setIsLogged(false);
     history.push("/");
   }
@@ -84,7 +94,7 @@ function App() {
   function getMovies() {
     setIsPending(true);
     // Запрос к внешнему API
-    connectMoviesApi
+    moviesApi
       .getMovies()
       .then((data) => {
         setExternalMovies(data);
@@ -111,40 +121,48 @@ function App() {
     );
   }
 
+  function handleUpdateUser(data) {
+    return mainApi.editProfile(data).then((res) => {
+      setCurrentUser(res);
+    });
+  }
+
   return (
     <div className="page">
       <div className="page__container">
-        <Header isLogged={isLogged} />
-        <Switch>
-          <Route exact path="/">
-            <Main />
-          </Route>
-          <Route path="/register">
-            <Register onRegister={handleRegister} />
-          </Route>
-          <Route path="/login">
-            <Login onLogin={handleLogin} />
-          </Route>
-          <Route path="/movies">
-            <Movies
-              movies={foundMovies}
-              onRequest={getMovies}
-              onSearch={searchExternalMovies}
-              onPending={isPending}
-            />
-          </Route>
-          <Route path="/saved-movies">
-            <SavedMovies />
-          </Route>
-          <Route path="/profile">
-            <Profile onLogout={handleLogout} />
-          </Route>
-          <Route path="/404">
-            <NotFoundError />
-          </Route>
-          <Redirect from="*" to="/404" />
-        </Switch>
-        <Footer isInvisible={true} />
+        <CurrentUserContext.Provider value={currentUser}>
+          <Header isLogged={isLogged} />
+          <Switch>
+            <Route exact path="/">
+              <Main />
+            </Route>
+            <Route path="/register">
+              <Register onRegister={handleRegister} />
+            </Route>
+            <Route path="/login">
+              <Login onLogin={handleLogin} />
+            </Route>
+            <Route path="/movies">
+              <Movies
+                movies={foundMovies}
+                onRequest={getMovies}
+                onSearch={searchExternalMovies}
+                onPending={isPending}
+              />
+            </Route>
+            <Route path="/saved-movies">
+              <SavedMovies />
+            </Route>
+            <Route path="/profile">
+              <Profile onUpdate={handleUpdateUser} onLogout={handleLogout} />
+            </Route>
+            <Route path="/404">
+              <NotFoundError />
+            </Route>
+            <Redirect from="*" to="/404" />
+          </Switch>
+          <Footer isInvisible={true} />
+        </CurrentUserContext.Provider>
         <ErrorPopup
           message={"Что-то пошло не так"}
           isOpen={isErrorOpen}
