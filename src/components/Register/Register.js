@@ -6,16 +6,18 @@ import { withRouter, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 function Register(props) {
+  const { onRegister } = props;
   const history = useHistory();
 
   const [data, setData] = React.useState({
-    name: "Виталий",
-    email: "pochta@yandex.ru",
-    password: "qwertyuioplkjh",
+    name: "",
+    email: "",
+    password: "",
   });
 
   function handleSubmit(e) {
     e.preventDefault();
+    onRegister(data);
   }
 
   function handleChange(e) {

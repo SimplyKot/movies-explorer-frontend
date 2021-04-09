@@ -27,7 +27,7 @@ class Api {
     return res.json();
   }
 
-  getInitialCards() {
+  getSavedMovies() {
     // `${this._baseUrl}/cards` GET
     return this._transmit(`${this._baseUrl}/cards`, "GET").then(
       this._checkResponse
@@ -49,21 +49,6 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  addCard(data) {
-    // `${this._baseUrl}/cards POST
-    return this._transmit(`${this._baseUrl}/cards`, "POST", {
-      name: data.name,
-      link: data.link,
-    }).then(this._checkResponse);
-  }
-
-  deleteCard(id) {
-    // `${this._baseUrl}/cards/${id}` DELETE
-    return this._transmit(`${this._baseUrl}/cards/${id}`, "DELETE").then(
-      this._checkResponse
-    );
-  }
-
   // Атрибут action со значением DELETE снимает лайк
   setLike(id, action) {
     // `${this._baseUrl}/cards/likes/${id}` action == "DELETE" ? "DELETE" : "PUT"
@@ -73,14 +58,7 @@ class Api {
       action ? "DELETE" : "PUT"
     ).then(this._checkResponse);
   }
-
-  updateAvatar(data) {
-    // `${this._baseUrl}/users/me/avatar` PATCH
-    return this._transmit(`${this._baseUrl}/users/me/avatar`, "PATCH", {
-      avatar: data.avatar,
-    }).then(this._checkResponse);
-  }
 }
 
-const connectApi = new Api(connectConfig);
-export default connectApi;
+const connectMainApi = new Api(connectConfig);
+export default connectMainApi;

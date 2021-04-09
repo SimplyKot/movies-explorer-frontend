@@ -14,6 +14,8 @@ import Footer from "../Footer/Footer";
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
 import connectMoviesApi from "../../utils/MoviesApi";
+import connectMainApi from "../../utils/MainApi";
+import * as auth from "../../utils/auth";
 
 function App() {
   const history = useHistory();
@@ -22,14 +24,52 @@ function App() {
   const [externalMovies, setExternalMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
   const [isPending, setIsPending] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     console.log(externalMovies);
   }, [externalMovies]);
 
-  function handleLogin() {
-    setIsLogged(true);
-    history.push("/");
+  const tokenCheck = () => {
+    if (localStorage.getItem("jwt")) {
+      const jwt = localStorage.getItem("jwt");
+      auth
+        .getContent(jwt)
+        .then((res) => {
+          if (res.email) {
+            setCurrentUser(res);
+            setIsLogged(true);
+          } else {
+            throw new Error({ message: "Проблема с токеном" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsLogged(false);
+        });
+    }
+  };
+
+  function handleRegister(data) {
+    console.log(data);
+    return auth
+      .register(data)
+      .then((res) => console.log(res))
+      .then(() => history.push("/login"))
+      .catch((err) => console.log(err));
+  }
+
+  function handleLogin(data) {
+    // TODO: Разобраться с CORS
+    return auth
+      .authorize(data)
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+      })
+      .then(tokenCheck)
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleLogout() {
@@ -80,7 +120,7 @@ function App() {
             <Main />
           </Route>
           <Route path="/register">
-            <Register />
+            <Register onRegister={handleRegister} />
           </Route>
           <Route path="/login">
             <Login onLogin={handleLogin} />

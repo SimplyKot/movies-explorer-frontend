@@ -6,14 +6,13 @@ import { withRouter, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 function Login(props) {
+  const { onLogin } = props;
   const history = useHistory();
-  const [data, setData] = React.useState({
-    name: "Виталий",
-    email: "pochta@yandex.ru",
-  });
+  const [data, setData] = React.useState({});
+
   function handleSubmit(e) {
     e.preventDefault();
-    props.onLogin();
+    onLogin(data);
   }
 
   function handleChange(e) {
