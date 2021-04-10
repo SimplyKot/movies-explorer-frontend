@@ -8,11 +8,12 @@ function Movies(props) {
   const { movies, onSearch, onRequest, onPending } = props;
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [displayMovies, setDisplayMovies] = useState([]);
+  const [isPending, setIsPending] = useState(false);
 
-  useEffect(() => {
-    onRequest();
-    console.log("Изиенился список фильмов. Анализируем...");
-  }, []);
+  // useEffect(() => {
+  //   onRequest();
+  //   console.log("Изиенился список фильмов. Анализируем...");
+  // }, []);
 
   useEffect(() => {
     console.log(movies.length);

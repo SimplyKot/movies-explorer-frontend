@@ -93,55 +93,81 @@ function App() {
   }
 
   function getMovies() {
-    setIsPending(true);
-    // Запрос к внешнему API
-    moviesApi
-      .getMovies()
-      .then((res) =>
-        res.map((item) => {
-          return {
-            country: item.country,
-            director: item.director,
-            duration: item.duration,
-            year: item.year,
-            description: item.description,
-            image: !item.image
-              ? null
-              : `https://api.nomoreparties.co${item.image.url}`,
-            trailer: item.trailerLink,
-            thumbnail: !item.image
-              ? null
-              : `https://api.nomoreparties.co${item.image.formats.thumbnail.url}`,
-            // owner: item.owner,
-            movieId: item.id,
-            nameRU: item.nameRU,
-            nameEN: item.nameEN,
-          };
-        })
-      )
-      .then((data) => {
-        setExternalMovies(data);
-        // Скрываем прелоадер
-        console.log("Выполнили запрос к серверу и возвращаем результат");
-      })
-      .catch((err) => {
-        console.log(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-        );
-      })
-      .finally(() => setIsPending(false));
+    if (localStorage.getItem("externalMovies")) {
+      console.log("Фильмы исползуем из локального хранилища");
+      return new Promise((resolve, reject) => {
+        resolve(JSON.parse(localStorage.getItem("externalMovies")));
+      });
+    }
+
+    if (!localStorage.getItem("externalMovies")) {
+      console.log("Запрос к внешнему API");
+      setIsPending(true);
+      // Запрос к внешнему API
+      return moviesApi
+        .getMovies()
+        .then((res) =>
+          res.map((item) => {
+            // console.log(item);
+            return {
+              country: item.country,
+              director: item.director,
+              duration: item.duration,
+              year: item.year,
+              description: item.description,
+              image: !item.image
+                ? null
+                : `https://api.nomoreparties.co${item.image.url}`,
+              trailer: item.trailerLink,
+              thumbnail: !item.image
+                ? null
+                : `https://api.nomoreparties.co${item.image.formats.thumbnail.url}`,
+              // owner: item.owner,
+              movieId: item.id,
+              nameRU: item.nameRU,
+              nameEN: item.nameEN,
+            };
+          })
+        )
+        .then((res) => {
+          setIsPending(false);
+          localStorage.setItem("externalMovies", JSON.stringify(res));
+          return res;
+        });
+      // .then((data) => {
+      //   setExternalMovies(data);
+      //   localStorage.setItem("externalMovies", JSON.stringify(data));
+
+      //   console.log("Выполнили запрос к серверу и возвращаем результат");
+      // });
+      // .catch((err) => {
+      //   console.log(
+      //     "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+      //   );
+      // });
+      // Скрываем прелоадер
+      // .finally(() => setIsPending(false))
+    }
   }
 
-  function searchExternalMovies(searchObject) {
+  function searchMovies(searchObject) {
     // console.log(searchObject);
-    setFoundMovies(
-      externalMovies.filter((movie) => {
-        return (
-          movie.nameRU.includes(searchObject.string) &&
-          (searchObject.shortFilm ? movie.duration < 40 : true)
-        );
+
+    getMovies()
+      .then((data) => {
+        setExternalMovies(data);
+        return data;
       })
-    );
+      .then((movies) => {
+        setFoundMovies(
+          movies.filter((movie) => {
+            return (
+              movie.nameRU.includes(searchObject.string) &&
+              (searchObject.shortFilm ? movie.duration < 40 : true)
+            );
+          })
+        );
+      });
   }
 
   function handleUpdateUser(data) {
@@ -171,7 +197,7 @@ function App() {
               component={Movies}
               movies={foundMovies}
               onRequest={getMovies}
-              onSearch={searchExternalMovies}
+              onSearch={searchMovies}
               onPending={isPending}
             />
             <ProtectedRoute
