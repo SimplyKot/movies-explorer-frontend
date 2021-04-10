@@ -10,6 +10,8 @@ function Profile(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [isButtonActive, setIsButtonActive] = useState(false);
 
+  // TODO: useEffect? context
+
   useEffect(() => {
     if (data.name !== currentUser.name || data.email !== currentUser.email) {
       setIsButtonActive(true);

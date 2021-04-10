@@ -18,10 +18,11 @@ import mainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const history = useHistory();
-  const [isLogged, setIsLogged] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [externalMovies, setExternalMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
@@ -44,14 +45,14 @@ function App() {
         .then((res) => {
           if (res.email) {
             setCurrentUser(res);
-            setIsLogged(true);
+            setLoggedIn(true);
           } else {
             throw new Error({ message: "Проблема с токеном" });
           }
         })
         .catch((err) => {
           console.log(err);
-          setIsLogged(false);
+          setLoggedIn(false);
         });
     }
   };
@@ -83,7 +84,7 @@ function App() {
   function handleLogout() {
     localStorage.removeItem("jwt");
     setCurrentUser({});
-    setIsLogged(false);
+    setLoggedIn(false);
     history.push("/");
   }
 
@@ -131,7 +132,7 @@ function App() {
     <div className="page">
       <div className="page__container">
         <CurrentUserContext.Provider value={currentUser}>
-          <Header isLogged={isLogged} />
+          <Header isLogged={loggedIn} />
           <Switch>
             <Route exact path="/">
               <Main />
@@ -142,20 +143,27 @@ function App() {
             <Route path="/login">
               <Login onLogin={handleLogin} />
             </Route>
-            <Route path="/movies">
-              <Movies
-                movies={foundMovies}
-                onRequest={getMovies}
-                onSearch={searchExternalMovies}
-                onPending={isPending}
-              />
-            </Route>
-            <Route path="/saved-movies">
-              <SavedMovies />
-            </Route>
-            <Route path="/profile">
-              <Profile onUpdate={handleUpdateUser} onLogout={handleLogout} />
-            </Route>
+            <ProtectedRoute
+              path="/movies"
+              loggedIn={loggedIn}
+              component={Movies}
+              movies={foundMovies}
+              onRequest={getMovies}
+              onSearch={searchExternalMovies}
+              onPending={isPending}
+            />
+            <ProtectedRoute
+              path="/saved-movies"
+              loggedIn={loggedIn}
+              component={SavedMovies}
+            />
+            <ProtectedRoute
+              path="/profile"
+              loggedIn={loggedIn}
+              component={Profile}
+              onUpdate={handleUpdateUser}
+              onLogout={handleLogout}
+            />
             <Route path="/404">
               <NotFoundError />
             </Route>

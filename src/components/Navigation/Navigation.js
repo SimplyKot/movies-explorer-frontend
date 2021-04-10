@@ -13,14 +13,14 @@ const menuItems = [
 const menuProfile = { name: "Аккаунт", link: "/profile" };
 
 function Navigation(props) {
-  const { isLogged } = props;
+  const { loggedIn } = props;
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   function toggleBurger(e) {
     setIsBurgerOpen(!isBurgerOpen);
   }
 
-  if (isLogged) {
+  if (loggedIn) {
     return (
       <>
         <ul className="navigation">

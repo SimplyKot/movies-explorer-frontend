@@ -25,7 +25,7 @@ function Header(props) {
         <img src={logo} alt="Зеленый логотип с улыбкой" />
       </nav>
 
-      <Navigation isLogged={props.isLogged} />
+      <Navigation loggedIn={props.isLogged} />
     </header>
   );
 }
