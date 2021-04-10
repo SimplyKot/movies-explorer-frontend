@@ -99,7 +99,6 @@ function App() {
       .getMovies()
       .then((res) =>
         res.map((item) => {
-          console.log(item);
           return {
             country: item.country,
             director: item.director,
@@ -121,7 +120,6 @@ function App() {
         })
       )
       .then((data) => {
-        console.log(data);
         setExternalMovies(data);
         // Скрываем прелоадер
         console.log("Выполнили запрос к серверу и возвращаем результат");

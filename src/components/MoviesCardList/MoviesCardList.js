@@ -10,7 +10,7 @@ function MoviesCardList(props) {
     return (
       <ul className="cardlist">
         {movies.map((item) => (
-          <li key={item.id}>
+          <li key={item.movieId}>
             <MovieCard movie={item} component={props.component} />
           </li>
         ))}

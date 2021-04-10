@@ -14,10 +14,7 @@ function MovieCard(props) {
   }
 
   function composeImageUrl(movie) {
-    if (!movie.image) {
-      return movieImgPlaceholder;
-    }
-    return `https://api.nomoreparties.co${movie.image.url}`;
+    return movie.image ? movie.image : movieImgPlaceholder;
   }
 
   function clickHandle(e) {
