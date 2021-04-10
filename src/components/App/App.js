@@ -97,7 +97,31 @@ function App() {
     // Запрос к внешнему API
     moviesApi
       .getMovies()
+      .then((res) =>
+        res.map((item) => {
+          console.log(item);
+          return {
+            country: item.country,
+            director: item.director,
+            duration: item.duration,
+            year: item.year,
+            description: item.description,
+            image: !item.image
+              ? null
+              : `https://api.nomoreparties.co${item.image.url}`,
+            trailer: item.trailerLink,
+            thumbnail: !item.image
+              ? null
+              : `https://api.nomoreparties.co${item.image.formats.thumbnail.url}`,
+            // owner: item.owner,
+            movieId: item.id,
+            nameRU: item.nameRU,
+            nameEN: item.nameEN,
+          };
+        })
+      )
       .then((data) => {
+        console.log(data);
         setExternalMovies(data);
         // Скрываем прелоадер
         console.log("Выполнили запрос к серверу и возвращаем результат");
