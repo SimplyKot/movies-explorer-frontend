@@ -29,7 +29,7 @@ class Api {
 
   getSavedMovies() {
     // `${this._baseUrl}/cards` GET
-    return this._transmit(`${this._baseUrl}/cards`, "GET").then(
+    return this._transmit(`${this._baseUrl}/movies`, "GET").then(
       this._checkResponse
     );
   }
@@ -50,12 +50,16 @@ class Api {
   }
 
   // Атрибут action со значением DELETE снимает лайк
-  setLike(id, action) {
-    // `${this._baseUrl}/cards/likes/${id}` action == "DELETE" ? "DELETE" : "PUT"
+  postMovie(movie) {
+    return this._transmit(`${this._baseUrl}/movies`, "POST", movie).then(
+      this._checkResponse
+    );
+  }
 
+  deleteMovie(movie) {
     return this._transmit(
-      `${this._baseUrl}/cards/${id}/likes`,
-      action ? "DELETE" : "PUT"
+      `${this._baseUrl}/movies/${movie._id}`,
+      "DELETE"
     ).then(this._checkResponse);
   }
 }

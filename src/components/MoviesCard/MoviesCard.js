@@ -6,7 +6,7 @@ import cross from "../../images/cross.svg";
 import movieImgPlaceholder from "../../images/movie_placeholder.svg";
 
 function MovieCard(props) {
-  const { movie, component } = props;
+  const { movie, component, onLikeClick } = props;
   const like = component === "saved-movies" ? cross : heartLike;
 
   function timeToString(duration) {
@@ -21,6 +21,7 @@ function MovieCard(props) {
     e.preventDefault();
     e.stopPropagation();
     console.log("Like/dislike click");
+    onLikeClick(movie);
   }
 
   return (

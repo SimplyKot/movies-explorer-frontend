@@ -5,7 +5,7 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies(props) {
-  const { movies, onSearch, onPending } = props;
+  const { movies, onSearch, onLikeClick } = props;
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [displayMovies, setDisplayMovies] = useState([]);
   const [isPending, setIsPending] = useState(false);
@@ -17,7 +17,7 @@ function Movies(props) {
   // }, []);
 
   useEffect(() => {
-    console.log(movies.length);
+    console.log("найдено фильмов =>", movies.length);
     // Выводим 5 фильмов
     setDisplayMovies(movies.slice(0, 5));
   }, [movies]);
@@ -47,7 +47,11 @@ function Movies(props) {
     <section className="movies">
       <SearchMovies handleSearch={searchHandler} />
       {isPending ? <Preloader /> : ""}
-      <MoviesCardList movies={displayMovies} errorMessage={errorMessage} />
+      <MoviesCardList
+        movies={displayMovies}
+        errorMessage={errorMessage}
+        onLikeClick={onLikeClick}
+      />
       <div
         className={`movies__button-container
         ${isButtonVisible ? "movies__button-container_visible" : ""}`}

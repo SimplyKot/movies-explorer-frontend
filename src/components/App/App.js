@@ -26,16 +26,22 @@ function App() {
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [externalMovies, setExternalMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
-  const [isPending, setIsPending] = useState(false);
+
   const [currentUser, setCurrentUser] = useState({});
+  const [savedMovies, setSavedMovies] = useState([]);
 
   useEffect(() => {
     tokenCheck();
   }, []);
 
   useEffect(() => {
-    console.log(externalMovies);
+    console.log(`Все фильмы ${externalMovies.length} => `, externalMovies);
+    console.log(`Сохраннных фильмов ${savedMovies.length} =>`, savedMovies);
   }, [externalMovies]);
+
+  useEffect(() => {
+    mainApi.getSavedMovies().then((data) => setSavedMovies(data));
+  }, [currentUser]);
 
   const tokenCheck = () => {
     if (localStorage.getItem("jwt")) {
@@ -103,7 +109,7 @@ function App() {
 
     if (!localStorage.getItem("externalMovies")) {
       console.log("Запрос к внешнему API");
-      setIsPending(true);
+      // setIsPending(true);
       // Запрос к внешнему API
       return moviesApi
         .getMovies()
@@ -131,23 +137,10 @@ function App() {
           })
         )
         .then((res) => {
-          setIsPending(false);
+          // setIsPending(false);
           localStorage.setItem("externalMovies", JSON.stringify(res));
           return res;
         });
-      // .then((data) => {
-      //   setExternalMovies(data);
-      //   localStorage.setItem("externalMovies", JSON.stringify(data));
-
-      //   console.log("Выполнили запрос к серверу и возвращаем результат");
-      // });
-      // .catch((err) => {
-      //   console.log(
-      //     "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-      //   );
-      // });
-      // Скрываем прелоадер
-      // .finally(() => setIsPending(false))
     }
   }
 
@@ -176,6 +169,26 @@ function App() {
     });
   }
 
+  function handleLikeClick(data) {
+    console.log(data);
+    // mainApi.postMovie(data).then((res) => console.log(res));
+    // Если фильм с таким movieId не содержится в savedMovies, то выполняем добавление фильма
+    console.log(savedMovies);
+    if (
+      savedMovies.find((item) => {
+        return item.movieId === data.movieId;
+      })
+    ) {
+      console.log("Фильм уже добавлен => будем удалять");
+      return mainApi.deleteMovie(data).then((res) => console.log(res));
+    } else {
+      console.log("Фильма нет такого => будем добавлять");
+      return mainApi.postMovie(data).then((res) => {
+        setSavedMovies(savedMovies.push(res));
+      });
+    }
+  }
+
   return (
     <div className="page">
       <div className="page__container">
@@ -193,16 +206,18 @@ function App() {
             </Route>
             <ProtectedRoute
               path="/movies"
+              onLikeClick={handleLikeClick}
               loggedIn={loggedIn}
               component={Movies}
               movies={foundMovies}
               onSearch={searchMovies}
-              onPending={isPending}
             />
             <ProtectedRoute
               path="/saved-movies"
+              onLikeClick={handleLikeClick}
               loggedIn={loggedIn}
               component={SavedMovies}
+              savedMovies={savedMovies}
             />
             <ProtectedRoute
               path="/profile"
