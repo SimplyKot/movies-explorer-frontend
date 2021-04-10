@@ -9,6 +9,7 @@ function Movies(props) {
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [displayMovies, setDisplayMovies] = useState([]);
   const [isPending, setIsPending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   // useEffect(() => {
   //   onRequest();
@@ -26,9 +27,14 @@ function Movies(props) {
   }, [movies, displayMovies]);
 
   function searchHandler(data) {
+    setErrorMessage("");
     setIsPending(true);
     onSearch(data)
-      .catch((err) => console.log(err))
+      .catch((err) =>
+        setErrorMessage(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        )
+      )
       .finally(() => setIsPending(false));
   }
 
@@ -41,7 +47,7 @@ function Movies(props) {
     <section className="movies">
       <SearchMovies handleSearch={searchHandler} />
       {isPending ? <Preloader /> : ""}
-      <MoviesCardList movies={displayMovies} />
+      <MoviesCardList movies={displayMovies} errorMessage={errorMessage} />
       <div
         className={`movies__button-container
         ${isButtonVisible ? "movies__button-container_visible" : ""}`}
