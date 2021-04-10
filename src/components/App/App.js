@@ -83,6 +83,7 @@ function App() {
 
   function handleLogout() {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("externalMovies");
     setCurrentUser({});
     setLoggedIn(false);
     history.push("/");
@@ -152,8 +153,7 @@ function App() {
 
   function searchMovies(searchObject) {
     // console.log(searchObject);
-
-    getMovies()
+    return getMovies()
       .then((data) => {
         setExternalMovies(data);
         return data;
@@ -196,7 +196,6 @@ function App() {
               loggedIn={loggedIn}
               component={Movies}
               movies={foundMovies}
-              onRequest={getMovies}
               onSearch={searchMovies}
               onPending={isPending}
             />

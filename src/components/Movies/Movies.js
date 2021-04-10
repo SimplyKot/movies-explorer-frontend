@@ -5,7 +5,7 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies(props) {
-  const { movies, onSearch, onRequest, onPending } = props;
+  const { movies, onSearch, onPending } = props;
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [displayMovies, setDisplayMovies] = useState([]);
   const [isPending, setIsPending] = useState(false);
@@ -25,6 +25,13 @@ function Movies(props) {
     setIsButtonVisible(movies.length > displayMovies.length);
   }, [movies, displayMovies]);
 
+  function searchHandler(data) {
+    setIsPending(true);
+    onSearch(data)
+      .catch((err) => console.log(err))
+      .finally(() => setIsPending(false));
+  }
+
   function moreHandler() {
     // Вывыодим на два фильма больше, чем же выведено
     setDisplayMovies(movies.slice(0, displayMovies.length + 2));
@@ -32,8 +39,8 @@ function Movies(props) {
 
   return (
     <section className="movies">
-      <SearchMovies onSearch={onSearch} />
-      {onPending ? <Preloader /> : ""}
+      <SearchMovies handleSearch={searchHandler} />
+      {isPending ? <Preloader /> : ""}
       <MoviesCardList movies={displayMovies} />
       <div
         className={`movies__button-container

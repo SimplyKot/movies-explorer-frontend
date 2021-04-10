@@ -26,7 +26,7 @@ function MovieCard(props) {
   return (
     <a
       className="movie"
-      href={movie.trailerLink}
+      href={movie.trailer}
       target={"_blank"}
       rel="noreferrer"
     >
