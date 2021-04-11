@@ -18,8 +18,10 @@
 }
 
 .error-popup__description {
+  padding: 0 10px;
+  text-align: center;
   margin: 48px 0px;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .error-popup__close {
