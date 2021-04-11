@@ -22,7 +22,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 function App() {
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const [isErrorOpen, setIsErrorOpen] = useState("");
   // const [externalMovies, setExternalMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
@@ -121,7 +121,7 @@ function App() {
   }
 
   function handleErrorClose() {
-    setIsErrorOpen(false);
+    setIsErrorOpen("");
   }
 
   function getMovies() {
@@ -248,6 +248,10 @@ function App() {
     }
   }
 
+  function openErrorPopup(messasge) {
+    setIsErrorOpen(messasge);
+  }
+
   return (
     <div className="page">
       <div className="page__container">
@@ -272,6 +276,7 @@ function App() {
               savedMovies={savedMovies}
               onSearch={searchMovies}
               moreButton={true}
+              onError={openErrorPopup}
             />
             <ProtectedRoute
               path="/saved-movies"
@@ -281,6 +286,7 @@ function App() {
               movies={foundSavedMovies}
               onSearch={searchSavedMovies}
               moreButton={false}
+              onError={openErrorPopup}
             />
             <ProtectedRoute
               path="/profile"
@@ -297,7 +303,7 @@ function App() {
           <Footer isInvisible={true} />
         </CurrentUserContext.Provider>
         <ErrorPopup
-          message={"Что-то пошло не так"}
+          message={`${isErrorOpen}`}
           isOpen={isErrorOpen}
           closeHandler={handleErrorClose}
         />

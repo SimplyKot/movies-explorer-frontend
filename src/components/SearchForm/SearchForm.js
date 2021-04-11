@@ -30,7 +30,7 @@ function SearchForm(props) {
   }
 
   return (
-    <form className="serach-form" onSubmit={submitHandler}>
+    <form className="serach-form" onSubmit={submitHandler} noValidate>
       <div className="search-string">
         <input
           className="search-string__input"

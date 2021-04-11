@@ -5,7 +5,14 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies(props) {
-  const { movies, savedMovies, onSearch, onLikeClick, moreButton } = props;
+  const {
+    movies,
+    savedMovies,
+    onSearch,
+    onLikeClick,
+    moreButton,
+    onError,
+  } = props;
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [displayMovies, setDisplayMovies] = useState([]);
   const [isPending, setIsPending] = useState(false);
@@ -31,15 +38,20 @@ function Movies(props) {
   }, [movies, displayMovies, moreButton]);
 
   function searchHandler(data) {
-    setErrorMessage("");
-    setIsPending(true);
-    onSearch(data)
-      .catch((err) =>
-        setErrorMessage(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+    console.log(data);
+    if (!data.string) {
+      onError("Нужно ввести ключевое слово");
+    } else {
+      setErrorMessage("");
+      setIsPending(true);
+      onSearch(data)
+        .catch((err) =>
+          setErrorMessage(
+            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+          )
         )
-      )
-      .finally(() => setIsPending(false));
+        .finally(() => setIsPending(false));
+    }
   }
 
   function moreHandler() {
