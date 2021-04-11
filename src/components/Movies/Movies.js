@@ -20,7 +20,7 @@ function Movies(props) {
     console.log("найдено фильмов =>", movies.length);
     if (moreButton) {
       // Выводим 5 фильмов
-      setDisplayMovies(movies.slice(0, 5));
+      setDisplayMovies(movies.slice(0, 12));
     } else {
       setDisplayMovies(movies);
     }
@@ -44,7 +44,7 @@ function Movies(props) {
 
   function moreHandler() {
     // Вывыодим на два фильма больше, чем же выведено
-    setDisplayMovies(movies.slice(0, displayMovies.length + 2));
+    setDisplayMovies(movies.slice(0, displayMovies.length + 3));
   }
 
   return (

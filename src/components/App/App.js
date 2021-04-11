@@ -24,10 +24,11 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [externalMovies, setExternalMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
+  const [foundSavedMovies, setFoundSavedMovies] = useState([]);
 
   const [currentUser, setCurrentUser] = useState({});
-  const [savedMovies, setSavedMovies] = useState([]);
 
   useEffect(() => {
     tokenCheck();
@@ -40,8 +41,8 @@ function App() {
 
   useEffect(() => {
     mainApi.getSavedMovies().then((data) => {
-      console.log(data);
       setSavedMovies(data);
+      setFoundSavedMovies(data);
     });
   }, [currentUser]);
 
@@ -165,6 +166,23 @@ function App() {
       });
   }
 
+  function searchSavedMovies(searchObject) {
+    console.log(savedMovies);
+    console.log(searchObject);
+    return new Promise((resolve, reject) => {
+      resolve(
+        savedMovies.filter((movie) => {
+          return (
+            movie.nameRU.includes(searchObject.string) &&
+            (searchObject.shortFilm ? movie.duration < 40 : true)
+          );
+        })
+      );
+    }).then((movies) => {
+      setFoundSavedMovies(movies);
+    });
+  }
+
   function handleUpdateUser(data) {
     return mainApi.editProfile(data).then((res) => {
       setCurrentUser(res);
@@ -194,17 +212,18 @@ function App() {
 
       return mainApi.deleteMovie(data).then((res) => {
         console.log(res);
-        setSavedMovies(
-          savedMovies.filter((item) => {
-            return item.movieId !== data.movieId;
-          })
-        );
+        const filteredMovies = savedMovies.filter((item) => {
+          return item.movieId !== data.movieId;
+        });
+        setSavedMovies(filteredMovies);
+        setFoundSavedMovies(filteredMovies);
       });
     } else {
       console.log("Фильма нет такого => будем добавлять");
       return mainApi.postMovie(data).then((res) => {
         console.log("Добавлнный фильм =>", res);
         setSavedMovies([...savedMovies, res]);
+        setFoundSavedMovies([...savedMovies, res]);
       });
     }
   }
@@ -239,8 +258,8 @@ function App() {
               onLikeClick={handleLikeClick}
               loggedIn={loggedIn}
               component={Movies}
-              movies={savedMovies}
-              onSearch={searchMovies}
+              movies={foundSavedMovies}
+              onSearch={searchSavedMovies}
               moreButton={false}
             />
             <ProtectedRoute
