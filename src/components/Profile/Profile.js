@@ -9,6 +9,7 @@ function Profile(props) {
   const [data, setData] = useState(currentUser);
   const [isEdit, setIsEdit] = useState(false);
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const [error, setError] = useState("");
 
   // TODO: useEffect? context
 
@@ -28,8 +29,7 @@ function Profile(props) {
         setIsEdit(false);
       })
       .catch((err) => {
-        console.log("Произошла ошибка при сохранении");
-        console.log(err);
+        setError("При обновлении профиля произошла ошибка.");
       });
   }
 
@@ -99,6 +99,8 @@ function Profile(props) {
         </div>
         <nav className="profile__selector">
           {/* TODO: Сделать сообщение об ошибке над кнопкой */}
+          <p className="profile__error-message">{`${error}`}</p>
+
           <button
             type="submit"
             className={`form__button form__button_view_profile
