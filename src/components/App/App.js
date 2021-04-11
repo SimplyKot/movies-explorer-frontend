@@ -39,15 +39,25 @@ function App() {
   //   console.log(`Сохраннных фильмов ${savedMovies.length} =>`, savedMovies);
   // }, [externalMovies, savedMovies]);
 
-  function doubleSavedMovies(data) {
-    setSavedMovies(data);
-    setFoundSavedMovies(data);
-  }
-
   useEffect(() => {
-    mainApi.getSavedMovies().then((data) => {
-      doubleSavedMovies(data);
-    });
+    console.log(currentUser);
+    if (currentUser.name) {
+      if (!localStorage.getItem("savedMovies")) {
+        // console.log(
+        //   "Нет локальных данных о сохраненных фильмах. Запрашиваем с сервера"
+        // );
+        mainApi.getSavedMovies().then((data) => {
+          doubleSavedMovies(data);
+        });
+      } else {
+        // console.log(
+        //   "Есть локальные данные о сохраннных фильмах. Используем их."
+        // );
+        const data = JSON.parse(localStorage.getItem("savedMovies"));
+        setSavedMovies(data);
+        setFoundSavedMovies(data);
+      }
+    }
   }, [currentUser]);
 
   const tokenCheck = () => {
@@ -69,6 +79,12 @@ function App() {
         });
     }
   };
+
+  function doubleSavedMovies(data) {
+    setSavedMovies(data);
+    setFoundSavedMovies(data);
+    localStorage.setItem("savedMovies", JSON.stringify(data));
+  }
 
   function handleRegister(data) {
     console.log(data);
@@ -95,8 +111,10 @@ function App() {
   }
 
   function handleLogout() {
-    localStorage.removeItem("jwt");
-    localStorage.removeItem("externalMovies");
+    // localStorage.removeItem("jwt");
+    // localStorage.removeItem("externalMovies");
+    // localStorage.removeItem("savedMovies");
+    localStorage.clear();
     setCurrentUser({});
     setLoggedIn(false);
     history.push("/");
