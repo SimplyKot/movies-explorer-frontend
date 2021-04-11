@@ -37,10 +37,13 @@ function App() {
   useEffect(() => {
     console.log(`Все фильмы ${externalMovies.length} => `, externalMovies);
     console.log(`Сохраннных фильмов ${savedMovies.length} =>`, savedMovies);
-  }, [externalMovies]);
+  }, [externalMovies, savedMovies]);
 
   useEffect(() => {
-    mainApi.getSavedMovies().then((data) => setSavedMovies(data));
+    mainApi.getSavedMovies().then((data) => {
+      console.log(data);
+      setSavedMovies(data);
+    });
   }, [currentUser]);
 
   const tokenCheck = () => {
@@ -170,21 +173,39 @@ function App() {
   }
 
   function handleLikeClick(data) {
-    console.log(data);
+    console.log("Поступившие данные", data);
     // mainApi.postMovie(data).then((res) => console.log(res));
     // Если фильм с таким movieId не содержится в savedMovies, то выполняем добавление фильма
-    console.log(savedMovies);
+    console.log("Сохраненные фильмы", savedMovies);
     if (
+      savedMovies &&
       savedMovies.find((item) => {
         return item.movieId === data.movieId;
       })
     ) {
       console.log("Фильм уже добавлен => будем удалять");
-      return mainApi.deleteMovie(data).then((res) => console.log(res));
+
+      if (!data._id) {
+        console.log(data);
+        data = savedMovies.find((item) => {
+          return item.movieId === data.movieId;
+        });
+        console.log(data);
+      }
+
+      return mainApi.deleteMovie(data).then((res) => {
+        console.log(res);
+        setSavedMovies(
+          savedMovies.filter((item) => {
+            return item.movieId !== data.movieId;
+          })
+        );
+      });
     } else {
       console.log("Фильма нет такого => будем добавлять");
       return mainApi.postMovie(data).then((res) => {
-        setSavedMovies(savedMovies.push(res));
+        console.log("Добавлнный фильм =>", res);
+        setSavedMovies([...savedMovies, res]);
       });
     }
   }

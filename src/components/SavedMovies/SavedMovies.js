@@ -19,11 +19,12 @@ function SavedMovies(props) {
 
   function likeClickHandler(data) {
     console.log(displayMovies);
-    setDisplayMovies(
-      displayMovies.filter((item) => {
+    console.log(
+      displayMovies.find((item) => {
         return item.movieId !== data.movieId;
       })
     );
+
     onLikeClick(data).then((res) => console.log(res));
   }
 
