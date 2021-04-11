@@ -2,7 +2,13 @@ import "./moviescardlist.css";
 import MovieCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
-  const { movies, errorMessage, onLikeClick } = props;
+  const { movies, savedMovies, errorMessage, onLikeClick, path } = props;
+
+  function detectLike(movie) {
+    return path === "/saved-movies"
+      ? true
+      : savedMovies.some((item) => item.movieId === movie.movieId);
+  }
 
   if (errorMessage) {
     return <p className="cardlist__message">{`${errorMessage}`}</p>;
@@ -18,8 +24,10 @@ function MoviesCardList(props) {
         <li key={item.movieId}>
           <MovieCard
             movie={item}
+            liked={detectLike(item)}
             component={props.component}
             onLikeClick={onLikeClick}
+            path={path}
           />
         </li>
       ))}

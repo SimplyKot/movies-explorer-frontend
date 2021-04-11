@@ -231,14 +231,18 @@ function App() {
               loggedIn={loggedIn}
               component={Movies}
               movies={foundMovies}
+              savedMovies={savedMovies}
               onSearch={searchMovies}
+              moreButton={true}
             />
             <ProtectedRoute
               path="/saved-movies"
               onLikeClick={handleLikeClick}
               loggedIn={loggedIn}
-              component={SavedMovies}
-              savedMovies={savedMovies}
+              component={Movies}
+              movies={savedMovies}
+              onSearch={searchMovies}
+              moreButton={false}
             />
             <ProtectedRoute
               path="/profile"

@@ -6,8 +6,8 @@ import cross from "../../images/cross.svg";
 import movieImgPlaceholder from "../../images/movie_placeholder.svg";
 
 function MovieCard(props) {
-  const { movie, component, onLikeClick } = props;
-  const like = component === "saved-movies" ? cross : heartLike;
+  const { movie, path, onLikeClick, liked } = props;
+  const like = path === "/saved-movies" ? cross : heartLike;
 
   function timeToString(duration) {
     return `${Math.floor(duration / 60)}ч ${duration % 60}м`;
@@ -38,7 +38,7 @@ function MovieCard(props) {
         </div>
         <div className="movie__like-icon">
           <img
-            src={movie.liked === "true" ? like : heart}
+            src={liked ? like : heart}
             alt="В избранном"
             onClick={clickHandle}
           />

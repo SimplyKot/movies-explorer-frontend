@@ -18,13 +18,6 @@ function SavedMovies(props) {
   }, [savedMovies]);
 
   function likeClickHandler(data) {
-    console.log(displayMovies);
-    console.log(
-      displayMovies.find((item) => {
-        return item.movieId !== data.movieId;
-      })
-    );
-
     onLikeClick(data).then((res) => console.log(res));
   }
 
