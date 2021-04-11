@@ -24,11 +24,11 @@ function Movies(props) {
     } else {
       setDisplayMovies(movies);
     }
-  }, [movies]);
+  }, [movies, moreButton]);
 
   useEffect(() => {
     setIsButtonVisible(movies.length > displayMovies.length && moreButton);
-  }, [movies, displayMovies]);
+  }, [movies, displayMovies, moreButton]);
 
   function searchHandler(data) {
     setErrorMessage("");
