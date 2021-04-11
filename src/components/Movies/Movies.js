@@ -17,7 +17,7 @@ function Movies(props) {
   // }, []);
 
   useEffect(() => {
-    console.log("найдено фильмов =>", movies.length);
+    // console.log("найдено фильмов =>", movies.length);
     if (moreButton) {
       // Выводим 5 фильмов
       setDisplayMovies(movies.slice(0, 12));

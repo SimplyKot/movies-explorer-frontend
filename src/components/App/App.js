@@ -23,7 +23,7 @@ function App() {
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
   const [isErrorOpen, setIsErrorOpen] = useState(false);
-  const [externalMovies, setExternalMovies] = useState([]);
+  // const [externalMovies, setExternalMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
   const [foundSavedMovies, setFoundSavedMovies] = useState([]);
@@ -34,15 +34,19 @@ function App() {
     tokenCheck();
   }, []);
 
-  useEffect(() => {
-    console.log(`Все фильмы ${externalMovies.length} => `, externalMovies);
-    console.log(`Сохраннных фильмов ${savedMovies.length} =>`, savedMovies);
-  }, [externalMovies, savedMovies]);
+  // useEffect(() => {
+  //   console.log(`Все фильмы ${externalMovies.length} => `, externalMovies);
+  //   console.log(`Сохраннных фильмов ${savedMovies.length} =>`, savedMovies);
+  // }, [externalMovies, savedMovies]);
+
+  function doubleSavedMovies(data) {
+    setSavedMovies(data);
+    setFoundSavedMovies(data);
+  }
 
   useEffect(() => {
     mainApi.getSavedMovies().then((data) => {
-      setSavedMovies(data);
-      setFoundSavedMovies(data);
+      doubleSavedMovies(data);
     });
   }, [currentUser]);
 
@@ -151,7 +155,7 @@ function App() {
     // console.log(searchObject);
     return getMovies()
       .then((data) => {
-        setExternalMovies(data);
+        // setExternalMovies(data);
         return data;
       })
       .then((movies) => {
@@ -167,8 +171,8 @@ function App() {
   }
 
   function searchSavedMovies(searchObject) {
-    console.log(savedMovies);
-    console.log(searchObject);
+    // console.log(savedMovies);
+    // console.log(searchObject);
     return new Promise((resolve, reject) => {
       resolve(
         savedMovies.filter((movie) => {
@@ -203,7 +207,7 @@ function App() {
       console.log("Фильм уже добавлен => будем удалять");
 
       if (!data._id) {
-        console.log(data);
+        // console.log(data);
         data = savedMovies.find((item) => {
           return item.movieId === data.movieId;
         });
@@ -211,19 +215,17 @@ function App() {
       }
 
       return mainApi.deleteMovie(data).then((res) => {
-        console.log(res);
+        // console.log(res);
         const filteredMovies = savedMovies.filter((item) => {
           return item.movieId !== data.movieId;
         });
-        setSavedMovies(filteredMovies);
-        setFoundSavedMovies(filteredMovies);
+        doubleSavedMovies(filteredMovies);
       });
     } else {
       console.log("Фильма нет такого => будем добавлять");
       return mainApi.postMovie(data).then((res) => {
-        console.log("Добавлнный фильм =>", res);
-        setSavedMovies([...savedMovies, res]);
-        setFoundSavedMovies([...savedMovies, res]);
+        // console.log("Добавлнный фильм =>", res);
+        doubleSavedMovies([...savedMovies, res]);
       });
     }
   }
