@@ -2,28 +2,43 @@ import "./profile.css";
 import { useState, useEffect, useContext } from "react";
 import Form from "../Form/Form";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import useFormValidation from "../../hooks/UseForm";
 
 function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
   const { onLogout, onUpdate } = props;
-  const [data, setData] = useState(currentUser);
+  // const [data, setData] = useState(currentUser);
   const [isEdit, setIsEdit] = useState(false);
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [error, setError] = useState("");
 
-  // TODO: useEffect? context
+  const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+    resetForm,
+  } = useFormValidation();
 
   useEffect(() => {
-    if (data.name !== currentUser.name || data.email !== currentUser.email) {
+    resetForm(currentUser);
+  }, []);
+
+  useEffect(() => {
+    if (
+      isValid &&
+      (values.name !== currentUser.name || values.email !== currentUser.email)
+    ) {
       setIsButtonActive(true);
     } else {
       setIsButtonActive(false);
     }
-  }, [data, currentUser]);
+  }, [values, currentUser]);
 
   function handleSubmit(e) {
+    setError("");
     e.preventDefault();
-    onUpdate(data)
+    onUpdate(values)
       .then((res) => {
         console.log("Сохранили изменения");
         setIsEdit(false);
@@ -31,11 +46,6 @@ function Profile(props) {
       .catch((err) => {
         setError("При обновлении профиля произошла ошибка.");
       });
-  }
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
   }
 
   function handleLogout(e) {
@@ -54,8 +64,9 @@ function Profile(props) {
     <section className="profile__form-container">
       <Form
         name="register"
-        title={`Привет, ${data.name}!`}
+        title={`Привет, ${currentUser.name}!`}
         onSubmit={handleSubmit}
+        noValidate
       >
         <div className="from__input-container from__input-container_type_profile">
           <label
@@ -71,14 +82,19 @@ function Profile(props) {
             placeholder="Имя"
             className="form__field form__field_view_profile"
             required
-            value={data.name || ""}
+            value={values.name || ""}
             onChange={handleChange}
             pattern="^[0-9a-zA-Zа-яёА-ЯЁ /s -]+"
             disabled={!isEdit}
           />
-          <span className="form__field-error" id="email-input-error"></span>
+          <span
+            className="form__field-error form__field-error_type_profile"
+            id="email-input-error"
+          >
+            {errors.name}
+          </span>
         </div>
-        <div className="from__input-container">
+        <div className="from__input-container from__input-container_type_profile">
           <label
             className="form__label form__label_view_profile"
             htmlFor="email"
@@ -92,12 +108,17 @@ function Profile(props) {
             placeholder="Email"
             className="form__field form__field_view_profile"
             required
-            value={data.email || ""}
+            value={values.email || ""}
             onChange={handleChange}
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             disabled={!isEdit}
           />
-          <span className="form__field-error" id="email-input-error"></span>
+          <span
+            className="form__field-error form__field-error_type_profile"
+            id="email-input-error"
+          >
+            {errors.email}
+          </span>
         </div>
         <nav className="profile__selector">
           <p className="profile__error-message">{error}</p>

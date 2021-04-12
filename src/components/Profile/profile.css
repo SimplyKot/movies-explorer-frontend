@@ -45,6 +45,9 @@
   padding: 16px 0;
   border-bottom: 1px solid #424242;
 }
+.from__input-container_type_profile {
+  position: relative;
+}
 
 .from__input-container:first-of-type {
   margin-top: 107px;
@@ -97,6 +100,13 @@
 
 .form__button_view_profile {
   margin: 0;
+}
+
+.form__field-error_type_profile {
+  position: absolute;
+  top: 40px;
+  text-align: left;
+  right: 0;
 }
 
 @media (max-width: 1280px) and (min-width: 768px) {
