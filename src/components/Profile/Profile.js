@@ -98,7 +98,6 @@ function Profile(props) {
           <span className="form__field-error" id="email-input-error"></span>
         </div>
         <nav className="profile__selector">
-          {/* TODO: Сделать сообщение об ошибке над кнопкой */}
           <p className="profile__error-message">{`${error}`}</p>
 
           <button

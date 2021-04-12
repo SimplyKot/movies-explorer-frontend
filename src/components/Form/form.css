@@ -81,6 +81,15 @@
   opacity: 0.8;
 }
 
+.form__button_disabled {
+  display: none;
+}
+
+.form__button_inactive {
+  opacity: 0.8;
+  cursor: default;
+}
+
 .form__field-error {
   font-style: normal;
   font-size: 10px;
