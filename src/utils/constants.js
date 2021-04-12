@@ -57,4 +57,18 @@ const hardCodeMovies = [
   },
 ];
 
-export default hardCodeMovies;
+const moviesConnectConfig = {
+  baseUrl: "https://api.nomoreparties.co/beatfilm-movies",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
+const mainConnectConfig = {
+  baseUrl: "https://api.kotomovies.students.nomoredomains.rocks",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
+export { hardCodeMovies, moviesConnectConfig, mainConnectConfig };

@@ -17,3 +17,8 @@
     padding-bottom: 0;
   }
 }
+
+.cardlist__message {
+  margin-top: 80px;
+  text-align: center;
+}

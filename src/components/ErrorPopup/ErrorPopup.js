@@ -5,11 +5,13 @@ function ErrorPopup(props) {
   function handleCloseError(e) {
     e.preventDefault();
     closeHandler();
-    console.log("Закрываем попап с ошибкой");
+    // console.log("Закрываем попап с ошибкой");
   }
 
   return (
-    <section className={`error-popup ${isOpen ? "error-popup_opened" : ""}`}>
+    <section
+      className={`error-popup ${isOpen !== "" ? "error-popup_opened" : ""}`}
+    >
       <h1 className="error-popup__description">Пpоизошла ошибка: {message}</h1>
       <nav className="error-popup__close" onClick={handleCloseError}>
         Закрыть

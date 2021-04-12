@@ -1,26 +1,27 @@
+import { useState } from "react";
 import "./register.css";
 import logo from "../../images/logo.svg";
 import React from "react";
 import Form from "../Form/Form";
 import { withRouter, useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import useFormValidation from "../../hooks/UseForm";
 
 function Register(props) {
+  const { onRegister, onLogin } = props;
   const history = useHistory();
+  const [error, setError] = useState("");
 
-  const [data, setData] = React.useState({
-    name: "Виталий",
-    email: "pochta@yandex.ru",
-    password: "qwertyuioplkjh",
-  });
+  const { values, errors, isValid, handleChange } = useFormValidation();
 
   function handleSubmit(e) {
+    setError("");
     e.preventDefault();
-  }
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+    onRegister(values)
+      .then((data) =>
+        onLogin({ email: values.email, password: values.password })
+      )
+      .catch((err) => setError("Ошибка на сервере"));
   }
 
   function logoClickHandler() {
@@ -37,7 +38,12 @@ function Register(props) {
           onClick={logoClickHandler}
         />
       </div>
-      <Form name="register" title="Добро пожаловать!" onSubmit={handleSubmit}>
+      <Form
+        name="register"
+        title="Добро пожаловать!"
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <label className="form__label" htmlFor="email">
           Имя
         </label>
@@ -46,27 +52,35 @@ function Register(props) {
           name="name"
           id="name-input"
           placeholder="Имя"
-          className="form__field"
+          className={`form__field
+          ${errors.name ? "form__field_type_error" : ""}`}
           required
-          value={data.name || ""}
+          value={values.name || ""}
           onChange={handleChange}
+          pattern="^[0-9a-zA-Zа-яёА-ЯЁ /s -]+"
         />
-        <span className="form__field-error" id="email-input-error"></span>
+        <span className="form__field-error" id="email-input-error">
+          {errors.name}
+        </span>
 
         <label className="form__label" htmlFor="email">
           E-mail
         </label>
         <input
-          type="text"
+          type="email"
           name="email"
           id="email-input"
           placeholder="Email"
-          className="form__field"
+          className={`form__field
+          ${errors.email ? "form__field_type_error" : ""}`}
           required
-          value={data.email || ""}
+          value={values.email || ""}
           onChange={handleChange}
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         />
-        <span className="form__field-error" id="email-input-error"></span>
+        <span className="form__field-error" id="email-input-error">
+          {errors.email}
+        </span>
 
         <label className="form__label" htmlFor="password">
           Пароль
@@ -76,18 +90,26 @@ function Register(props) {
           name="password"
           id="password-input"
           placeholder="Пароль"
-          className="form__field form__field_type_error"
+          className={`form__field
+          ${errors.password ? "form__field_type_error" : ""}`}
           required
-          value={data.password || ""}
+          minLength="3"
+          value={values.password || ""}
           onChange={handleChange}
         />
         <span className="form__field-error" id="password-input-error">
-          Что-то пошло не так...
+          {errors.password}
         </span>
-
-        <button type="submit" className="form__button">
-          Зарегистрироваться
-        </button>
+        <div className="form__button-container">
+          <p className="button__error-message">{error}</p>
+          <button
+            type="submit"
+            className={`form__button
+            ${isValid ? "" : " form__button_inactive"}`}
+          >
+            Зарегистрироваться
+          </button>
+        </div>
       </Form>
       <div className="register__bottom-container">
         Уже зарегистрированы?
