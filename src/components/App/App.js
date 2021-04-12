@@ -40,7 +40,6 @@ function App() {
   // }, [externalMovies, savedMovies]);
 
   useEffect(() => {
-    console.log(currentUser);
     if (currentUser.name) {
       if (!localStorage.getItem("savedMovies")) {
         // console.log(
@@ -74,7 +73,7 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           setLoggedIn(false);
         });
     }
@@ -118,14 +117,14 @@ function App() {
 
   function getMovies() {
     if (localStorage.getItem("externalMovies")) {
-      console.log("Фильмы исползуем из локального хранилища");
+      // console.log("Фильмы исползуем из локального хранилища");
       return new Promise((resolve, reject) => {
         resolve(JSON.parse(localStorage.getItem("externalMovies")));
       });
     }
 
     if (!localStorage.getItem("externalMovies")) {
-      console.log("Запрос к внешнему API");
+      // console.log("Запрос к внешнему API");
       // setIsPending(true);
       // Запрос к внешнему API
       return moviesApi
@@ -204,17 +203,17 @@ function App() {
   }
 
   function handleLikeClick(data) {
-    console.log("Поступившие данные", data);
+    // console.log("Поступившие данные", data);
     // mainApi.postMovie(data).then((res) => console.log(res));
     // Если фильм с таким movieId не содержится в savedMovies, то выполняем добавление фильма
-    console.log("Сохраненные фильмы", savedMovies);
+    // console.log("Сохраненные фильмы", savedMovies);
     if (
       savedMovies &&
       savedMovies.find((item) => {
         return item.movieId === data.movieId;
       })
     ) {
-      console.log("Фильм уже добавлен => будем удалять");
+      // console.log("Фильм уже добавлен => будем удалять");
 
       if (!data._id) {
         // console.log(data);
@@ -232,7 +231,7 @@ function App() {
         doubleSavedMovies(filteredMovies);
       });
     } else {
-      console.log("Фильма нет такого => будем добавлять");
+      // console.log("Фильма нет такого => будем добавлять");
       return mainApi.postMovie(data).then((res) => {
         // console.log("Добавлнный фильм =>", res);
         doubleSavedMovies([...savedMovies, res]);

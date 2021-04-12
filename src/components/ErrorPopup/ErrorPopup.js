@@ -5,7 +5,7 @@ function ErrorPopup(props) {
   function handleCloseError(e) {
     e.preventDefault();
     closeHandler();
-    console.log("Закрываем попап с ошибкой");
+    // console.log("Закрываем попап с ошибкой");
   }
 
   return (

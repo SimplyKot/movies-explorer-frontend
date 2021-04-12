@@ -38,7 +38,7 @@ function Movies(props) {
   }, [movies, displayMovies, moreButton]);
 
   function searchHandler(data) {
-    console.log(data);
+    // console.log(data);
     if (!data.string) {
       onError("Нужно ввести ключевое слово");
     } else {

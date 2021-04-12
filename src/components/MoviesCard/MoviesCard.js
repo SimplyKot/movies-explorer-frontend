@@ -20,7 +20,7 @@ function MovieCard(props) {
   function clickHandle(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Like/dislike click");
+    // console.log("Like/dislike click");
     onLikeClick(movie);
   }
 
