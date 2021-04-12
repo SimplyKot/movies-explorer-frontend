@@ -22,6 +22,7 @@ function Profile(props) {
 
   useEffect(() => {
     resetForm(currentUser);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function Profile(props) {
     } else {
       setIsButtonActive(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values, currentUser]);
 
   function handleSubmit(e) {
