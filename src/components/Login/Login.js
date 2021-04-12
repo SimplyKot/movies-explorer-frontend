@@ -22,11 +22,8 @@ function Login(props) {
 
   useEffect(() => {
     resetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    console.log(values, isValid, errors);
-  }, [values]);
 
   function handleSubmit(e) {
     e.preventDefault();

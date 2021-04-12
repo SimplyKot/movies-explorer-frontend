@@ -12,6 +12,7 @@ function SearchForm(props) {
     if (searchQuery) {
       handleSearch({ string: searchQuery, shortFilm: ioSwitch });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ioSwitch]);
 
   function toggleSwitch() {

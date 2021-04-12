@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./register.css";
 import logo from "../../images/logo.svg";
 import React from "react";
@@ -12,17 +12,7 @@ function Register(props) {
   const history = useHistory();
   const [error, setError] = useState("");
 
-  const {
-    values,
-    errors,
-    isValid,
-    handleChange,
-    resetForm,
-  } = useFormValidation();
-
-  useEffect(() => {
-    console.log(values, errors);
-  }, [values]);
+  const { values, errors, isValid, handleChange } = useFormValidation();
 
   function handleSubmit(e) {
     setError("");

@@ -42,7 +42,7 @@ function Profile(props) {
     e.preventDefault();
     onUpdate(values)
       .then((res) => {
-        console.log("Сохранили изменения");
+        // console.log("Сохранили изменения");
         setIsEdit(false);
       })
       .catch((err) => {
@@ -53,13 +53,13 @@ function Profile(props) {
   function handleLogout(e) {
     e.preventDefault();
     onLogout();
-    console.log("Выходим из аккаунта");
+    // console.log("Выходим из аккаунта");
   }
 
   function handleEditMode(e) {
     e.preventDefault();
     setIsEdit(true);
-    console.log("Переходим в режим редактирования", isEdit);
+    // console.log("Переходим в режим редактирования", isEdit);
   }
 
   return (
