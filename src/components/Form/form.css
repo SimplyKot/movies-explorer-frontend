@@ -55,10 +55,23 @@
   /* border-bottom: 1px solid #f00; */
 }
 
+.form__button-container {
+  margin: 101px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form__error-message {
+  margin: 0 0 20px 0;
+  color: #ff004c;
+  font-size: 11px;
+  line-height: 13px;
+}
+
 .form__button {
   transition: 0.2s;
 
-  margin: 134px 0 0 0;
   height: 45px;
 
   color: #fff;
@@ -74,6 +87,14 @@
 }
 .form__button:focus {
   outline: none;
+}
+
+.button__error-message {
+  margin: 0 0 20px 0;
+  color: #ff004c;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
 }
 
 .form__button:hover {
@@ -106,8 +127,8 @@
     margin: calc(50px - 10 / 448 * (100vw - 320px)) 0
       calc(80px - 16px - 40 / 448 * (100vw - 320px)) 0;
   }
-  .form__button {
+  .form__button-container {
     /* 69-69-157 */
-    margin-top: calc(179px - 45 / 448 * (100vw - 320px));
+    margin-top: calc(148px - 45 / 448 * (100vw - 320px));
   }
 }

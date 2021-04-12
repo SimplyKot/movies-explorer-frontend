@@ -1,23 +1,39 @@
 import "./login.css";
 import logo from "../../images/logo.svg";
-import React from "react";
+import { useEffect, useState } from "react";
 import Form from "../Form/Form";
 import { withRouter, useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import useFormValidation from "../../hooks/UseForm";
 
 function Login(props) {
   const { onLogin } = props;
   const history = useHistory();
-  const [data, setData] = React.useState({});
+  const [error, setError] = useState("");
+
+  // const [data, setData] = React.useState({});
+  const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+    resetForm,
+  } = useFormValidation();
+
+  useEffect(() => {
+    resetForm();
+  }, []);
+
+  useEffect(() => {
+    console.log(values, isValid, errors);
+  }, [values]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    onLogin(data);
-  }
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+    setError("");
+    onLogin(values).catch((err) => {
+      setError("Произошла ошибка при входе");
+    });
   }
 
   function logoClickHandler() {
@@ -34,21 +50,30 @@ function Login(props) {
           onClick={logoClickHandler}
         />
       </div>
-      <Form name="login" title="Рады видеть!" onSubmit={handleSubmit}>
+      <Form
+        name="login"
+        title="Рады видеть!"
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <label className="form__label" htmlFor="email">
           E-mail
         </label>
         <input
-          type="text"
+          type="email"
           name="email"
           id="email-input"
           placeholder="Email"
-          className="form__field"
+          className={`form__field
+          ${errors.email ? "form__field_type_error" : ""}`}
           required
-          value={data.email || ""}
+          value={values.email || ""}
           onChange={handleChange}
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         />
-        <span className="form__field-error" id="email-input-error"></span>
+        <span className="form__field-error" id="email-input-error">
+          {errors.email}
+        </span>
 
         <label className="form__label" htmlFor="password">
           Пароль
@@ -58,16 +83,26 @@ function Login(props) {
           name="password"
           id="password-input"
           placeholder="Пароль"
-          className="form__field"
+          className={`form__field
+          ${errors.password ? "form__field_type_error" : ""}`}
           required
-          value={data.password || ""}
+          minLength="3"
+          value={values.password || ""}
           onChange={handleChange}
         />
-        <span className="form__field-error" id="password-input-error"></span>
-
-        <button type="submit" className="form__button">
-          Войти
-        </button>
+        <span className="form__field-error" id="password-input-error">
+          {errors.password}
+        </span>
+        <div className="form__button-container">
+          <p className="button__error-message">{error}</p>
+          <button
+            type="submit"
+            className={`form__button
+            ${isValid ? "" : " form__button_inactive"}`}
+          >
+            Войти
+          </button>
+        </div>
       </Form>
       <div className="login__bottom-container">
         Ещё не зарегистрированы?

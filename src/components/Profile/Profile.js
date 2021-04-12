@@ -73,6 +73,7 @@ function Profile(props) {
             required
             value={data.name || ""}
             onChange={handleChange}
+            pattern="^[0-9a-zA-Zа-яёА-ЯЁ /s -]+"
             disabled={!isEdit}
           />
           <span className="form__field-error" id="email-input-error"></span>
@@ -85,7 +86,7 @@ function Profile(props) {
             E-mail
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="email-input"
             placeholder="Email"
@@ -93,12 +94,13 @@ function Profile(props) {
             required
             value={data.email || ""}
             onChange={handleChange}
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             disabled={!isEdit}
           />
           <span className="form__field-error" id="email-input-error"></span>
         </div>
         <nav className="profile__selector">
-          <p className="profile__error-message">{`${error}`}</p>
+          <p className="profile__error-message">{error}</p>
 
           <button
             type="submit"

@@ -87,12 +87,7 @@ function App() {
   }
 
   function handleRegister(data) {
-    console.log(data);
-    return auth
-      .register(data)
-      .then((res) => console.log(res))
-      .then(() => history.push("/login"))
-      .catch((err) => console.log(err));
+    return auth.register(data);
   }
 
   function handleLogin(data) {
@@ -104,9 +99,6 @@ function App() {
       .then(tokenCheck)
       .then(() => {
         history.push("/movies");
-      })
-      .catch((err) => {
-        console.log(err);
       });
   }
 
@@ -262,7 +254,7 @@ function App() {
               <Main />
             </Route>
             <Route path="/register">
-              <Register onRegister={handleRegister} />
+              <Register onRegister={handleRegister} onLogin={handleLogin} />
             </Route>
             <Route path="/login">
               <Login onLogin={handleLogin} />
