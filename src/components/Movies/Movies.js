@@ -25,10 +25,6 @@ function Movies(props) {
   const path = location.pathname;
 
   useEffect(() => {
-    console.log(path);
-  }, [path]);
-
-  useEffect(() => {
     // console.log("найдено фильмов =>", movies.length);
     if (moreButton) {
       // Выводим 5 фильмов
