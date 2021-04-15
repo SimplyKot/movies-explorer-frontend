@@ -3,6 +3,10 @@ import "./movies.css";
 import SearchMovies from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import {
+  MOVIESDISPLAY_NUMBER,
+  MOREDISPLAY_NUMBER,
+} from "../../utils/constants";
 
 function Movies(props) {
   const {
@@ -12,22 +16,23 @@ function Movies(props) {
     onLikeClick,
     moreButton,
     onError,
+    location,
   } = props;
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [displayMovies, setDisplayMovies] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const path = location.pathname;
 
-  // useEffect(() => {
-  //   onRequest();
-  //   console.log("Изиенился список фильмов. Анализируем...");
-  // }, []);
+  useEffect(() => {
+    console.log(path);
+  }, [path]);
 
   useEffect(() => {
     // console.log("найдено фильмов =>", movies.length);
     if (moreButton) {
       // Выводим 5 фильмов
-      setDisplayMovies(movies.slice(0, 12));
+      setDisplayMovies(movies.slice(0, MOVIESDISPLAY_NUMBER));
     } else {
       setDisplayMovies(movies);
     }
@@ -56,19 +61,25 @@ function Movies(props) {
 
   function moreHandler() {
     // Вывыодим на два фильма больше, чем же выведено
-    setDisplayMovies(movies.slice(0, displayMovies.length + 3));
+    setDisplayMovies(
+      movies.slice(0, displayMovies.length + MOREDISPLAY_NUMBER)
+    );
   }
 
   return (
     <section className="movies">
-      <SearchMovies handleSearch={searchHandler} />
+      <SearchMovies
+        handleSearch={searchHandler}
+        isPending={isPending}
+        path={path}
+      />
       {isPending ? <Preloader /> : ""}
       <MoviesCardList
         movies={displayMovies}
         savedMovies={savedMovies}
         errorMessage={errorMessage}
         onLikeClick={onLikeClick}
-        path={props.path}
+        path={path}
       />
       <div
         className={`movies__button-container

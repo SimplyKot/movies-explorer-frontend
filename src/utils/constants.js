@@ -71,4 +71,15 @@ const mainConnectConfig = {
   },
 };
 
-export { hardCodeMovies, moviesConnectConfig, mainConnectConfig };
+const SHORTMOVIE_DURATION = 40;
+const MOVIESDISPLAY_NUMBER = 12;
+const MOREDISPLAY_NUMBER = 3;
+
+export {
+  hardCodeMovies,
+  moviesConnectConfig,
+  mainConnectConfig,
+  SHORTMOVIE_DURATION,
+  MOVIESDISPLAY_NUMBER,
+  MOREDISPLAY_NUMBER,
+};

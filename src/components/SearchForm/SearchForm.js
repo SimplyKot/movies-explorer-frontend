@@ -4,9 +4,16 @@ import searchIcon from "../../images/search-icon.svg";
 import React from "react";
 
 function SearchForm(props) {
-  const { handleSearch } = props;
+  const { handleSearch, isPending, path } = props;
   const [ioSwitch, setIoSwitch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    if (searchQuery) {
+      handleSearch({ string: searchQuery, shortFilm: ioSwitch });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -38,8 +45,13 @@ function SearchForm(props) {
           placeholder="Фильм"
           required
           onChange={onChange}
+          disabled={isPending}
         />
-        <button type="submit" className="serach-form__button">
+        <button
+          type="submit"
+          className="serach-form__button"
+          disabled={isPending}
+        >
           <img src={searchIcon} alt="Найти" />
         </button>
       </div>
